@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Viswas Vinayakumar — AI/ML & GenAI Engineer</title>
-<meta name="description" content="AI/ML and Generative AI engineer in Berlin. I build agentic AI systems — MCP servers, human-in-the-loop agent control, and ML from first principles." />
+<title>Viswas Vinayakumar — AI/ML Engineer</title>
+<meta name="description" content="MSc AI/ML student in Berlin. Applied ML and data projects, deployed on AWS I set up myself — cloud infrastructure, efficient/green inference, and ML from first principles." />
 
 <!-- ===================================================================
   VISWAS VINAYAKUMAR — PORTFOLIO (light theme)
@@ -332,15 +332,15 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 
   <div class="wrap hero-inner">
     <!-- EDIT: name / role line -->
-    <p class="hero-id" data-reveal><b>Viswas Vinayakumar</b> · AI/ML &amp; GenAI Engineer · Berlin</p>
+    <p class="hero-id" data-reveal><b>Viswas Vinayakumar</b> · AI/ML Engineer · Berlin</p>
 
-    <h1 data-reveal style="--d:.08s">I build <em>agentic AI systems</em> that run.</h1>
+    <h1 data-reveal style="--d:.08s">Applied <em>ML</em>, deployed on real infrastructure.</h1>
 
     <!-- EDIT: subhead — one sentence, no fluff -->
     <p class="hero-sub" data-reveal style="--d:.16s">
-      MSc AI/ML student at the University of Europe for Applied Sciences.
-      I ship agent infrastructure — MCP servers, human-in-the-loop controls,
-      voice assistants — and learn ML from the math up.
+      MSc AI/ML student in Berlin. I work on data and machine-learning
+      projects — from efficient / green inference to analytics — and
+      deploy them on AWS I set up myself.
     </p>
 
     <div class="hero-cta" data-reveal style="--d:.24s">
@@ -351,7 +351,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
     <!-- EDIT: availability -->
     <p class="status" data-reveal style="--d:.32s">
       <span class="dot" aria-hidden="true"></span>
-      open to ML / GenAI internships &amp; working-student roles — Berlin · remote (EU)
+      open to ML, data &amp; cloud internships &amp; working-student roles — Berlin · remote (EU)
     </p>
   </div>
 </section>
@@ -361,76 +361,53 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
   <div class="wrap">
     <div class="work-head">
       <p class="eyebrow" data-reveal>selected work</p>
-      <h2 data-reveal style="--d:.08s">Six projects. All real, all running.</h2>
+      <h2 data-reveal style="--d:.08s">Cloud, ML, and applied research.</h2>
     </div>
 
-    <!-- ===== FEATURED ===== -->
+    <!-- ===== FEATURED: Heimo (AWS) ===== -->
     <article class="featured" data-reveal style="--d:.1s">
       <span class="tag-feature">featured</span>
       <div>
-        <span class="frame">human-in-the-loop control for autonomous agents</span>
-        <h3>Agentic Approval System</h3>
+        <span class="frame">production cloud architecture on AWS</span>
+        <h3>Heimo — Verified Student Housing</h3>
         <p>
-          A remote permission layer for Claude Code: agent actions are intercepted
-          and sent to my phone as Telegram Approve / Deny buttons.
+          A full-stack housing platform I designed and deployed end to end on
+          AWS — live on its own domain with SSL, the database off the public
+          internet, and backups automated.
         </p>
         <ul class="facts">
-          <li>Custom MCP server intercepts CLI permission prompts</li>
-          <li>FastAPI backend on Railway handles the round trip</li>
-          <li>Agents run unattended for hours — I stay in control from anywhere</li>
+          <li>Multi-tier VPC: public EC2 web tier, private RDS MySQL with no public access</li>
+          <li>S3 for versioned backups + a nightly automated mysqldump job</li>
+          <li>Least-privilege IAM roles — no static keys on the server — and per-tier security groups</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
-          <li>Python</li><li>FastAPI</li><li>MCP</li><li>Telegram Bot API</li><li>Railway</li>
+          <li>AWS</li><li>EC2</li><li>RDS</li><li>VPC</li><li>S3</li><li>IAM</li><li>PHP</li><li>MySQL</li>
         </ul>
       </div>
 
-      <div class="term" role="img" aria-label="Diagram: agent requests permission, request goes to Telegram, human approves, agent continues">
+      <div class="term" role="img" aria-label="AWS architecture: internet to an EC2 web tier in a public subnet, a private RDS MySQL with no public IP, nightly versioned S3 backups, and an IAM role with no keys on the server">
         <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
-        <span class="t">agent</span> → requests: <span class="w">run deploy.sh</span><br />
-        <span class="t">mcp</span>&nbsp;&nbsp; → intercepted, forwarded<br />
-        <span class="t">tg</span>&nbsp;&nbsp;&nbsp; → <span class="w">[ Approve ] [ Deny ]</span><br />
-        <span class="t">you</span>&nbsp;&nbsp; → tap ✓ from anywhere<br />
-        <span class="ok">✔ approved — agent resumes</span>
+        <span class="t">internet</span> → 443 → <span class="w">EC2 · Apache/PHP</span><br />
+        <span class="t">vpc</span>&nbsp;&nbsp;&nbsp;&nbsp; → public / private subnets<br />
+        <span class="t">rds</span>&nbsp;&nbsp;&nbsp;&nbsp; → <span class="w">MySQL</span> · private · no public IP<br />
+        <span class="t">s3</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; → nightly backup · versioned<br />
+        <span class="ok">✔ IAM role — write-only, no keys on the box</span>
       </div>
     </article>
 
-    <!-- ===== GRID ===== -->
+    <!-- ===== MAIN GRID ===== -->
     <div class="grid">
       <article class="card" data-reveal>
-        <span class="frame">always-on agents at $0/month</span>
-        <h3>Hermes Agent on GCP</h3>
+        <span class="frame">green software · applied research</span>
+        <h3>Green Caching for AI Features</h3>
         <ul class="facts">
-          <li>Self-hosted Hermes Agent (NousResearch) on a free-tier e2-micro VPS</li>
-          <li>Operated 24/7 through a Telegram control bot</li>
-          <li>Autonomous agent deployment with zero cloud budget</li>
+          <li>Group research (SD-B-05): response caching to cut wasted AI model calls</li>
+          <li>Measured −30% model calls, −17.4% latency, 100% output consistency on a 50-request workload</li>
+          <li>My role: research &amp; paper — background, sustainability framing, references</li>
+          <li>Roadmap (future.md): semantic caching + real energy measurement via CodeCarbon</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
-          <li>GCP</li><li>Linux</li><li>Telegram Bot API</li><li>systemd</li>
-        </ul>
-      </article>
-
-      <article class="card" data-reveal style="--d:.1s">
-        <span class="frame">desktop AI automation</span>
-        <h3>Jarvis — macOS Voice Assistant</h3>
-        <ul class="facts">
-          <li>Voice control built on Claude + Whisper, used daily</li>
-          <li>Four-layer app-launch fallback: bundle IDs → names → AppleScript → Spotlight</li>
-          <li>Clipboard, process monitoring, and brightness control</li>
-        </ul>
-        <ul class="tags" aria-label="Technologies">
-          <li>Python</li><li>Claude API</li><li>Whisper</li><li>AppleScript</li>
-        </ul>
-      </article>
-
-      <article class="card" data-reveal>
-        <span class="frame">the MCP protocol, hands-on</span>
-        <h3>MCP Document Server</h3>
-        <ul class="facts">
-          <li>FastMCP server covering all three MCP primitives: tools, resources, prompts</li>
-          <li>Built and debugged end-to-end — how agents discover and use capabilities</li>
-        </ul>
-        <ul class="tags" aria-label="Technologies">
-          <li>Python</li><li>FastMCP</li><li>MCP</li>
+          <li>Python</li><li>Hugging Face</li><li>Response Caching</li><li>Sustainable AI</li>
         </ul>
       </article>
 
@@ -445,17 +422,51 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
           <li>NumPy</li><li>MNIST</li><li>Backprop</li>
         </ul>
       </article>
+    </div>
 
+    <!-- ===== EXPLORATIONS (AI-assisted learning projects) ===== -->
+    <div class="work-head" data-reveal style="margin-top:clamp(3.5rem,7vw,5.5rem)">
+      <p class="eyebrow">explorations</p>
+      <p>
+        How I've been learning the agentic-AI and MCP stack — fast prototypes,
+        built with heavy AI assistance. Here for honesty, not as headline work.
+      </p>
+    </div>
+
+    <div class="grid">
       <article class="card" data-reveal>
-        <span class="frame">production cloud architecture on AWS</span>
-        <h3>Heimo — Verified Student Housing</h3>
+        <span class="frame">human-in-the-loop control for Claude Code</span>
+        <h3>Agentic Approval System</h3>
         <ul class="facts">
-          <li>Full-stack housing platform — live on AWS with a real domain and SSL</li>
-          <li>Multi-tier VPC: EC2 web tier, private RDS MySQL, versioned S3 backups</li>
-          <li>Least-privilege IAM roles, security-group isolation, nightly automated backups</li>
+          <li>Telegram Approve / Deny layer over Claude Code's permission prompts</li>
+          <li>Custom MCP server + FastAPI backend on Railway</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
-          <li>AWS</li><li>EC2</li><li>RDS</li><li>VPC / S3</li><li>PHP</li><li>MySQL</li>
+          <li>Python</li><li>FastAPI</li><li>MCP</li><li>Telegram</li><li>Railway</li>
+        </ul>
+      </article>
+
+      <article class="card" data-reveal style="--d:.1s">
+        <span class="frame">always-on agent on free-tier GCP</span>
+        <h3>Hermes Agent on GCP</h3>
+        <ul class="facts">
+          <li>Self-hosted open-source agent on a free-tier e2-micro VPS</li>
+          <li>Operated 24/7 through a Telegram control bot</li>
+        </ul>
+        <ul class="tags" aria-label="Technologies">
+          <li>GCP</li><li>Linux</li><li>systemd</li><li>Telegram</li>
+        </ul>
+      </article>
+
+      <article class="card" data-reveal>
+        <span class="frame">the MCP protocol, hands-on</span>
+        <h3>MCP Document Server</h3>
+        <ul class="facts">
+          <li>FastMCP server covering all three MCP primitives: tools, resources, prompts</li>
+          <li>Built to understand how agents discover and use capabilities</li>
+        </ul>
+        <ul class="tags" aria-label="Technologies">
+          <li>Python</li><li>FastMCP</li><li>MCP</li>
         </ul>
       </article>
     </div>
@@ -470,11 +481,11 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 
     <!-- EDIT: update as your work changes -->
     <ul class="now-list" data-reveal style="--d:.16s">
-      <li><b>Extending the agentic stack</b> — approval bot, Hermes on GCP, Jarvis</li>
       <li><b>Deepening ML foundations</b> — CNNs in PyTorch, NLI &amp; adversarial robustness (ANLI)</li>
-      <li><b>Exploring multi-agent orchestration</b> patterns over MCP</li>
+      <li><b>Extending the Green Caching project</b> — semantic caching &amp; measured energy (CodeCarbon), per the future.md roadmap</li>
+      <li><b>Learning the agentic-AI / MCP stack</b> — finished Anthropic's MCP course; prototyping with it</li>
     </ul>
-    <span class="now-stamp wrap" data-reveal style="--d:.2s">updated june 2026</span>
+    <span class="now-stamp wrap" data-reveal style="--d:.2s">updated july 2026</span>
   </div>
 </section>
 
@@ -489,19 +500,18 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
         <!-- EDIT: about copy -->
         <p data-reveal>
           I'm an MSc AI/ML student in Berlin. Coursework is the baseline; the
-          projects are where the learning sticks — <b>agent infrastructure with
-          real control surfaces</b>, ML implemented from the math up, and tools I
-          use every day.
+          projects are where it gets real — <b>full-stack apps I deploy on AWS
+          myself</b>, ML implemented from the math up, and applied data research.
         </p>
         <p data-reveal style="--d:.08s">
-          I believe the next wave of useful AI is <b>agentic</b> — systems that act,
-          not just answer. So I'm building fluency in both the protocol layer
-          (MCP, tool use, permissioning) and the model layer (training, gradients,
-          failure modes).
+          My strongest, most genuine work is hands-on: standing up cloud
+          infrastructure and working problems from the fundamentals rather than
+          just wiring tools together. I'm also learning the <b>agentic-AI / MCP</b>
+          stack — fast prototypes, and honest about where AI did the heavy lifting.
         </p>
         <p data-reveal style="--d:.16s">
           Looking for a small, sharp European team (English-speaking) where I can
-          ship ML/GenAI systems as an intern or working student.
+          grow as an ML / data engineer — as an intern or working student.
         </p>
       </div>
 
@@ -514,15 +524,21 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
           </ul>
         </div>
         <div class="skill-group" data-reveal style="--d:.08s">
-          <h3>Generative &amp; agentic AI</h3>
+          <h3>Cloud &amp; infrastructure</h3>
           <ul class="chips">
-            <li>Claude API</li><li>MCP</li><li>Agent Orchestration</li><li>Prompt Engineering</li><li>Whisper</li>
+            <li>AWS</li><li>EC2</li><li>RDS</li><li>VPC / S3</li><li>IAM</li><li>Linux</li><li>Python</li><li>Git</li>
           </ul>
         </div>
         <div class="skill-group" data-reveal style="--d:.16s">
-          <h3>Engineering &amp; infra</h3>
+          <h3>Data &amp; sustainability</h3>
           <ul class="chips">
-            <li>Python</li><li>FastAPI</li><li>AWS</li><li>GCP</li><li>Railway</li><li>Linux</li><li>Git</li>
+            <li>Plotly</li><li>Data Visualization</li><li>Green Software Patterns</li><li>Efficient Inference</li><li>Hugging Face</li>
+          </ul>
+        </div>
+        <div class="skill-group" data-reveal style="--d:.24s">
+          <h3>Agentic AI · learning</h3>
+          <ul class="chips">
+            <li>Claude API</li><li>MCP</li><li>MCP Course · Anthropic</li><li>FastAPI</li><li>GCP</li><li>Prompt Engineering</li>
           </ul>
         </div>
       </div>
@@ -534,10 +550,10 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 <section id="contact" class="contact" aria-label="Contact">
   <div class="wrap">
     <p class="eyebrow" data-reveal>contact</p>
-    <h2 data-reveal style="--d:.08s">Building agents? Let's talk.</h2>
+    <h2 data-reveal style="--d:.08s">Let's build something real.</h2>
     <p data-reveal style="--d:.16s">
-      Available for ML/GenAI internships and working-student roles across Europe.
-      I reply fast.
+      Available for ML, data &amp; cloud internships and working-student roles
+      across Europe. I reply fast.
     </p>
     <div class="contact-links" data-reveal style="--d:.24s">
       <!-- PLACEHOLDER: swap email -->
