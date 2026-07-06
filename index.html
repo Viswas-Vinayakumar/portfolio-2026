@@ -398,6 +398,19 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
     <!-- ===== MAIN GRID ===== -->
     <div class="grid">
       <article class="card" data-reveal>
+        <span class="frame">transformer fine-tuning · adversarial NLI</span>
+        <h3>RoBERTa Baseline for Adversarial NLI</h3>
+        <ul class="facts">
+          <li>Fine-tuned RoBERTa-base on all three ANLI rounds — the fair control for a 3-person team study</li>
+          <li>60.2 / 44.3 / 43.8% on R1/R2/R3 test; ~10.6h training on Apple M4 (MPS)</li>
+          <li>R1-only ablation + per-class error analysis; honest "competitive, not dominant" comparison vs the curriculum model</li>
+        </ul>
+        <ul class="tags" aria-label="Technologies">
+          <li>PyTorch</li><li>Hugging Face</li><li>RoBERTa</li><li>ANLI</li><li>MPS</li>
+        </ul>
+      </article>
+
+      <article class="card" data-reveal style="--d:.1s">
         <span class="frame">green software · applied research</span>
         <h3>Green Caching for AI Features</h3>
         <ul class="facts">
@@ -481,7 +494,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 
     <!-- EDIT: update as your work changes -->
     <ul class="now-list" data-reveal style="--d:.16s">
-      <li><b>Deepening ML foundations</b> — CNNs in PyTorch, NLI &amp; adversarial robustness (ANLI)</li>
+      <li><b>Deepening ML foundations</b> — CNNs in PyTorch and transformer fine-tuning</li>
       <li><b>Extending the Green Caching project</b> — semantic caching &amp; measured energy (CodeCarbon), per the future.md roadmap</li>
       <li><b>Learning the agentic-AI / MCP stack</b> — finished Anthropic's MCP course; prototyping with it</li>
     </ul>
