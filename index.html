@@ -3,46 +3,46 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Viswas Vinayakumar — AI/ML Engineer</title>
-<meta name="description" content="MSc AI/ML student in Berlin. Applied ML and data projects, deployed on AWS I set up myself — cloud infrastructure, efficient/green inference, and ML from first principles." />
+<title>Viswas Vinayakumar — cut 30% of your token burn</title>
+<meta name="description" content="I build the caching and cloud layer that stops teams paying twice for the same model call. Measured: 30% fewer model calls, 17% lower latency, zero drop in answer quality." />
 
 <!-- ===================================================================
-  VISWAS VINAYAKUMAR — PORTFOLIO (light theme)
-  Single-file static site. Zero JS dependencies.
-  Deploy: drop into your GitHub Pages repo root as index.html.
+  VISWAS VINAYAKUMAR — PORTFOLIO
+  Single-file static site. Zero JS dependencies. Deploy: GitHub Pages root.
 
   HOW TO EDIT:
-  - Every editable block is marked with an "EDIT:" comment.
-  - Email: search "PLACEHOLDER" (1 spot). GitHub + LinkedIn are live links.
+  - Editable blocks are marked with an "EDIT:" comment.
+  - The hero proof grid is 50 cells = the 50-request benchmark.
+    15 carry class="hit" (30% cache hits). Change both together or the
+    headline number and the picture stop agreeing.
 =================================================================== -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
 /* ==================== TOKENS ==================== */
 :root{
-  /* Light palette — clean white base, single teal accent */
   --bg:        #fbfdfd;
   --surface:   #ffffff;
-  --tint:      #f1f7f6;   /* soft teal-tinted panels */
+  --tint:      #f1f7f6;
   --line:      #e2eae9;
+  --spent:     #dbe4e3;   /* a request that hit the model */
   --text:      #15262b;
   --muted:     #51666d;
   --faint:     #7e9097;
-  --teal:      #0d9488;   /* accent — AA on white for UI/large text */
-  --teal-deep: #0b6e66;   /* darker — for small accent text */
+  --teal:      #0d9488;   /* accent — a request served from cache */
+  --teal-deep: #0b6e66;
   --teal-soft: rgba(13,148,136,.10);
 
-  --f-display: "Sora", system-ui, sans-serif;
+  --f-display: "Archivo", system-ui, sans-serif;
   --f-body:    "IBM Plex Sans", system-ui, sans-serif;
   --f-mono:    "IBM Plex Mono", ui-monospace, monospace;
 
   --ease: cubic-bezier(.22,.9,.3,1);
-  --ease-soft: cubic-bezier(.4,.14,.3,1);
 
-  --maxw: 1020px;
+  --maxw: 1060px;
   --rad: 14px;
 }
 
@@ -74,15 +74,21 @@ a{color:inherit;text-decoration:none}
 }
 .eyebrow::after{content:"";height:1px;width:48px;background:var(--line)}
 
-h1,h2,h3{font-family:var(--f-display);letter-spacing:-.02em;line-height:1.12}
-h2{font-size:clamp(1.65rem,3.4vw,2.25rem);font-weight:600;margin:.8rem 0 0}
+h1,h2,h3{font-family:var(--f-display);letter-spacing:-.025em;line-height:1.1}
+h2{font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:600;margin:.8rem 0 0}
 
 section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
+
+/* numerals: expanded width axis, tabular, so figures line up and read as data */
+.fig{
+  font-family:var(--f-display);font-stretch:118%;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+}
 
 /* ==================== NAV ==================== */
 .nav{
   position:fixed;inset:0 0 auto 0;z-index:100;
-  background:rgba(251,253,253,.8);
+  background:rgba(251,253,253,.82);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid transparent;
   transition:border-color .4s var(--ease);
@@ -108,49 +114,35 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 .nav-links a:hover::after{transform:scaleX(1)}
 
 /* ==================== HERO ==================== */
-.hero{min-height:92svh;display:flex;align-items:center;padding:7rem 0 4rem;overflow:hidden}
-
-/* —— SIGNATURE: breathing teal gradient, light edition —— */
-.hero-glow{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);will-change:transform,opacity}
-.blob-a{
-  width:58vmax;height:58vmax;left:-16vmax;top:-24vmax;
-  background:radial-gradient(circle at 35% 35%, rgba(13,148,136,.16), rgba(13,148,136,.04) 45%, transparent 70%);
-  animation:breatheA 11s var(--ease-soft) infinite;
+.hero{
+  min-height:90svh;display:grid;align-items:center;
+  padding:8rem 0 4rem;
 }
-.blob-b{
-  width:44vmax;height:44vmax;right:-14vmax;bottom:-18vmax;
-  background:radial-gradient(circle at 60% 60%, rgba(45,212,191,.14), transparent 65%);
-  animation:breatheB 14s var(--ease-soft) infinite;
+.hero-inner{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(2rem,5vw,4rem);align-items:center;
 }
-@keyframes breatheA{
-  0%,100%{transform:scale(1) translateY(0);opacity:.8}
-  50%{transform:scale(1.15) translateY(3%);opacity:1}
-}
-@keyframes breatheB{
-  0%,100%{transform:scale(1.06);opacity:.65}
-  50%{transform:scale(.94);opacity:.95}
-}
-.hero-grid{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size:72px 72px;opacity:.5;
-  mask-image:radial-gradient(ellipse 80% 65% at 40% 35%, #000 25%, transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 65% at 40% 35%, #000 25%, transparent 75%);
-}
-
-.hero-inner{position:relative;z-index:2}
 .hero-id{
-  font-family:var(--f-mono);font-size:.82rem;color:var(--muted);
-  letter-spacing:.05em;margin-bottom:1.3rem;
+  font-family:var(--f-mono);font-size:.8rem;color:var(--muted);
+  letter-spacing:.04em;margin-bottom:1.4rem;
 }
 .hero-id b{color:var(--text);font-weight:500}
-.hero h1{font-size:clamp(2.3rem,6vw,4rem);font-weight:700;max-width:16ch}
-.hero h1 em{font-style:normal;color:var(--teal)}
-.hero-sub{margin-top:1.4rem;max-width:50ch;color:var(--muted);font-size:1.1rem}
-.hero-cta{margin-top:2.2rem;display:flex;gap:1rem;flex-wrap:wrap}
+
+.hero h1{
+  font-size:clamp(2.2rem,5.2vw,3.5rem);font-weight:700;
+  max-width:15ch;text-wrap:balance;
+}
+.hero h1 .fig{color:var(--teal);font-weight:800}
+
+.hero-sub{
+  margin-top:1.5rem;max-width:44ch;color:var(--muted);font-size:1.08rem;
+}
+.hero-sub b{
+  color:var(--text);font-weight:500;
+  display:block;margin-bottom:.5rem;
+}
+
+.hero-cta{margin-top:2.1rem;display:flex;gap:1rem;flex-wrap:wrap}
 
 .btn{
   display:inline-flex;align-items:center;gap:.55rem;
@@ -164,18 +156,50 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 .btn-ghost:hover{transform:translateY(-2px);border-color:var(--teal)}
 
 .status{
-  margin-top:2.4rem;display:inline-flex;align-items:center;gap:.6rem;
-  font-family:var(--f-mono);font-size:.78rem;color:var(--muted);
+  margin-top:2.2rem;display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--f-mono);font-size:.76rem;color:var(--muted);
   border:1px solid var(--line);border-radius:99px;padding:.5rem 1rem;
   background:var(--surface);
 }
-.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2.4s var(--ease-soft) infinite}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* ==================== WORK ==================== */
-.work-head p{color:var(--muted);max-width:52ch;margin-top:1rem}
+/* —— SIGNATURE: the benchmark, drawn ——
+   50 cells = the 50-request workload. 15 teal = served from cache. */
+.proof{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--rad);padding:1.5rem;
+  box-shadow:0 14px 44px -28px rgba(13,148,136,.5);
+}
+.proof-cap{
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);
+}
+.workload{
+  display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin:1.1rem 0 1.3rem;
+}
+.workload i{display:block;aspect-ratio:1;border-radius:3px;background:var(--spent)}
+.workload i.hit{
+  background:var(--teal);
+  animation:fill .45s var(--ease) backwards;
+  animation-delay:calc(var(--i) * .055s + .45s);
+}
+@keyframes fill{
+  from{background:var(--spent);transform:scale(.5)}
+  to{background:var(--teal);transform:scale(1)}
+}
 
-/* Featured card — the one thing to remember */
+.readout{list-style:none;display:grid;gap:.55rem;border-top:1px solid var(--line);padding-top:1.1rem}
+.readout li{display:flex;align-items:baseline;gap:.7rem;font-size:.9rem;color:var(--muted)}
+.readout .fig{
+  color:var(--text);font-weight:700;font-size:1.15rem;
+  min-width:3.1rem;text-align:right;flex:none;
+}
+.readout .hit-key{color:var(--teal-deep)}
+
+/* ==================== WORK ==================== */
+.work-head p{color:var(--muted);max-width:54ch;margin-top:1rem}
+
 .featured{
   margin-top:2.8rem;position:relative;
   background:var(--surface);
@@ -186,24 +210,34 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
   transition:transform .45s var(--ease), box-shadow .45s var(--ease);
 }
 .featured:hover{transform:translateY(-4px);box-shadow:0 18px 50px -14px rgba(13,148,136,.25)}
+.featured.solo{grid-template-columns:1fr;max-width:none}
 .tag-feature{
   position:absolute;top:-12px;left:24px;
   font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
   background:var(--teal);color:#fff;padding:.3rem .7rem;border-radius:6px;font-weight:500;
 }
-.featured h3{font-size:clamp(1.3rem,2.5vw,1.7rem);font-weight:600}
+.featured h3{font-size:clamp(1.3rem,2.5vw,1.65rem);font-weight:600}
 .frame{
   font-family:var(--f-mono);font-size:.76rem;color:var(--teal-deep);
   letter-spacing:.06em;margin-bottom:.7rem;display:block;
 }
-.featured>div>p{color:var(--muted);margin-top:.9rem;font-size:1rem}
+.featured>div>p{color:var(--muted);margin-top:.9rem;font-size:1rem;max-width:60ch}
 
-/* quick-scan fact list inside cards */
 .facts{list-style:none;margin-top:1rem;display:grid;gap:.45rem}
-.facts li{
-  color:var(--muted);font-size:.95rem;display:flex;gap:.6rem;align-items:baseline;
+/* hanging indent, not flex — flex would turn every inline <b> into an item
+   and space it out with the row gap */
+.facts li{color:var(--muted);font-size:.95rem;position:relative;padding-left:1.4rem}
+.facts li::before{
+  content:"→";position:absolute;left:0;top:0;
+  color:var(--teal);font-family:var(--f-mono);
 }
-.facts li::before{content:"→";color:var(--teal);font-family:var(--f-mono);flex:none}
+.facts b{color:var(--text);font-weight:500}
+
+/* the honest credit line — stated, not buried */
+.credit{
+  margin-top:1.2rem;font-family:var(--f-mono);font-size:.76rem;line-height:1.7;
+  color:var(--faint);border-left:2px solid var(--line);padding-left:.8rem;
+}
 
 .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.3rem;list-style:none}
 .tags li{
@@ -211,7 +245,6 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
   background:var(--tint);border:1px solid var(--line);border-radius:6px;padding:.28rem .6rem;
 }
 
-/* light terminal diagram */
 .term{
   background:var(--tint);border:1px solid var(--line);border-radius:10px;
   font-family:var(--f-mono);font-size:.8rem;line-height:1.95;
@@ -224,29 +257,29 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 .term .ok{color:var(--teal-deep);font-weight:500}
 
 .grid{margin-top:1.5rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+.grid-3{grid-template-columns:repeat(3,1fr)}
 .card{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--rad);
   padding:1.7rem;display:flex;flex-direction:column;
   transition:transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
 }
 .card:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 12px 32px -16px var(--teal-soft)}
-.card h3{font-size:1.15rem;font-weight:600}
+.card h3{font-size:1.12rem;font-weight:600}
 .card .facts{flex:1}
-
-/* ==================== NOW ==================== */
-.now-list{
-  margin-top:2.6rem;background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--rad);padding:1.6rem 1.8rem;display:grid;gap:.8rem;list-style:none;
-}
-.now-list li{display:flex;gap:.8rem;align-items:baseline;color:var(--muted)}
-.now-list li::before{content:"●";color:var(--teal);font-size:.6rem;flex:none}
-.now-list b{color:var(--text);font-weight:500}
-.now-stamp{font-family:var(--f-mono);font-size:.72rem;color:var(--faint);margin-top:.9rem;display:block}
 
 /* ==================== ABOUT / SKILLS ==================== */
 .about-grid{margin-top:2.8rem;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,3.5rem)}
 .about-grid>div>p{color:var(--muted);margin-bottom:1rem}
 .about-grid b{color:var(--text);font-weight:500}
+
+.now{
+  margin-top:1.8rem;border-top:1px solid var(--line);padding-top:1.4rem;
+  display:grid;gap:.7rem;list-style:none;
+}
+.now li{color:var(--muted);font-size:.95rem;position:relative;padding-left:1.3rem}
+.now li::before{content:"●";position:absolute;left:0;top:.1em;color:var(--teal);font-size:.55rem}
+.now b{color:var(--text);font-weight:500}
+.now-stamp{font-family:var(--f-mono);font-size:.72rem;color:var(--faint);margin-top:1rem;display:block}
 
 .skill-group{margin-bottom:1.5rem}
 .skill-group h3{
@@ -265,8 +298,8 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 .contact{text-align:center;background:var(--tint)}
 .contact .eyebrow{justify-content:center}
 .contact .eyebrow::after{display:none}
-.contact h2{font-size:clamp(1.9rem,4.6vw,2.9rem);max-width:20ch;margin:.9rem auto 0}
-.contact p{color:var(--muted);max-width:46ch;margin:1.2rem auto 0}
+.contact h2{font-size:clamp(1.9rem,4.6vw,2.8rem);max-width:20ch;margin:.9rem auto 0}
+.contact p{color:var(--muted);max-width:48ch;margin:1.2rem auto 0}
 .contact-links{margin-top:2.4rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
 footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mono);font-size:.74rem;color:var(--faint)}
@@ -274,8 +307,8 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 
 /* ==================== REVEALS ==================== */
 [data-reveal]{
-  opacity:0;transform:translateY(22px);
-  transition:opacity .8s var(--ease), transform .8s var(--ease);
+  opacity:0;transform:translateY(18px);
+  transition:opacity .55s var(--ease), transform .55s var(--ease);
   transition-delay:var(--d,0s);will-change:opacity,transform;
 }
 [data-reveal].in{opacity:1;transform:none}
@@ -284,21 +317,26 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
   [data-reveal]{opacity:1;transform:none}
+  .workload i.hit{background:var(--teal)}
 }
 
 /* ==================== RESPONSIVE ==================== */
-@media (max-width:860px){
+@media (max-width:900px){
+  .hero{padding-top:7rem}
+  .hero-inner{grid-template-columns:1fr;gap:2.8rem}
+  .hero h1{max-width:18ch}
+  .proof{max-width:420px}
   .featured{grid-template-columns:1fr}
   .about-grid{grid-template-columns:1fr}
-  .grid{grid-template-columns:1fr}
+  .grid,.grid-3{grid-template-columns:1fr}
 }
 @media (max-width:560px){
   body{font-size:1rem}
   .nav-links{gap:1.2rem}
-  .hero{padding-top:6rem}
   .hero-cta .btn{width:100%;justify-content:center}
   .status{font-size:.7rem}
   .term{font-size:.72rem}
+  .workload{gap:4px}
 }
 </style>
 </head>
@@ -324,61 +362,113 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 
 <!-- ==================== HERO ==================== -->
 <section class="hero" id="top" aria-label="Introduction">
-  <div class="hero-glow" aria-hidden="true">
-    <div class="blob blob-a"></div>
-    <div class="blob blob-b"></div>
-  </div>
-  <div class="hero-grid" aria-hidden="true"></div>
-
   <div class="wrap hero-inner">
-    <!-- EDIT: name / role line -->
-    <p class="hero-id" data-reveal><b>Viswas Vinayakumar</b> · AI/ML Engineer · Berlin</p>
 
-    <h1 data-reveal style="--d:.08s">Applied <em>ML</em>, deployed on real infrastructure.</h1>
+    <div>
+      <!-- EDIT: name / role line -->
+      <p class="hero-id" data-reveal><b>Viswas Vinayakumar</b> · AI/ML Engineer · Berlin</p>
 
-    <!-- EDIT: subhead — one sentence, no fluff -->
-    <p class="hero-sub" data-reveal style="--d:.16s">
-      MSc AI/ML student in Berlin. I work on data and machine-learning
-      projects — from efficient / green inference to analytics — and
-      deploy them on AWS I set up myself.
-    </p>
+      <!-- EDIT: headline — the offer, not the job title -->
+      <h1 data-reveal style="--d:.08s">Cut <span class="fig">30%</span> of your token burn in under a day.</h1>
 
-    <div class="hero-cta" data-reveal style="--d:.24s">
-      <a class="btn btn-primary" href="#work">See the work →</a>
-      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      <p class="hero-sub" data-reveal style="--d:.16s">
+        <b>One-time implementation. Permanent savings.</b>
+        I build the caching and cloud layer that stops teams paying twice
+        for the same model call — with no drop in answer quality.
+      </p>
+
+      <div class="hero-cta" data-reveal style="--d:.24s">
+        <a class="btn btn-primary" href="#work">See the numbers →</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+
+      <!-- EDIT: availability -->
+      <p class="status" data-reveal style="--d:.32s">
+        <span class="dot" aria-hidden="true"></span>
+        open to ML, data &amp; cloud roles — Berlin · remote (EU)
+      </p>
     </div>
 
-    <!-- EDIT: availability -->
-    <p class="status" data-reveal style="--d:.32s">
-      <span class="dot" aria-hidden="true"></span>
-      open to ML, data &amp; cloud internships &amp; working-student roles — Berlin · remote (EU)
-    </p>
+    <!-- SIGNATURE: the measured benchmark, drawn.
+         50 cells = 50 requests. 15 teal = served from cache. -->
+    <figure class="proof" data-reveal style="--d:.4s">
+      <figcaption class="proof-cap">measured · 50-request workload</figcaption>
+
+      <div class="workload" role="img"
+           aria-label="Fifty request cells; fifteen of them, thirty percent, were served from cache instead of calling the model">
+        <i></i><i></i><i></i><i class="hit" style="--i:0"></i><i></i>
+        <i></i><i class="hit" style="--i:1"></i><i></i><i class="hit" style="--i:2"></i><i></i>
+        <i></i><i></i><i class="hit" style="--i:3"></i><i></i><i></i>
+        <i class="hit" style="--i:4"></i><i></i><i></i><i class="hit" style="--i:5"></i><i></i>
+        <i></i><i class="hit" style="--i:6"></i><i></i><i></i><i class="hit" style="--i:7"></i>
+        <i></i><i></i><i class="hit" style="--i:8"></i><i></i><i></i>
+        <i class="hit" style="--i:9"></i><i></i><i></i><i></i><i class="hit" style="--i:10"></i>
+        <i></i><i></i><i class="hit" style="--i:11"></i><i></i><i></i>
+        <i class="hit" style="--i:12"></i><i></i><i></i><i></i><i class="hit" style="--i:13"></i>
+        <i></i><i></i><i class="hit" style="--i:14"></i><i></i><i></i>
+      </div>
+
+      <ul class="readout">
+        <li><span class="fig hit-key">15</span> requests served from cache, not the model</li>
+        <li><span class="fig">17%</span> lower latency</li>
+        <li><span class="fig">0</span> answers changed by caching</li>
+      </ul>
+    </figure>
+
   </div>
 </section>
 
 <!-- ==================== WORK ==================== -->
-<section id="work" aria-label="Selected projects">
+<section id="work" aria-label="Selected work">
   <div class="wrap">
     <div class="work-head">
-      <p class="eyebrow" data-reveal>selected work</p>
-      <h2 data-reveal style="--d:.08s">Cloud, ML, and applied research.</h2>
+      <p class="eyebrow" data-reveal>the work</p>
+      <h2 data-reveal style="--d:.08s">Cheaper inference. Infrastructure that stays up.</h2>
     </div>
 
-    <!-- ===== FEATURED: Heimo (AWS) ===== -->
-    <article class="featured" data-reveal style="--d:.1s">
-      <span class="tag-feature">featured</span>
+    <!-- ===== THE RESULT BEHIND THE HEADLINE ===== -->
+    <article class="featured solo" data-reveal style="--d:.1s">
+      <span class="tag-feature">the 30%</span>
       <div>
-        <span class="frame">production cloud architecture on AWS</span>
+        <span class="frame">response caching for AI features</span>
+        <h3>Green Caching — a third fewer calls to the model</h3>
+        <p>
+          Teams pay full price every time a model answers a question it has
+          already answered. A response-caching layer intercepts the repeats:
+          same output, a third fewer billed calls, and the saving compounds
+          every day after the one it ships.
+        </p>
+        <ul class="facts">
+          <li><b>30% fewer model calls</b> and <b>17% lower latency</b> across a 50-request benchmark</li>
+          <li><b>100% output consistency</b> — not one answer changed because it came from cache</li>
+          <li>Next: semantic caching so near-identical prompts hit too, with energy measured via CodeCarbon</li>
+        </ul>
+        <p class="credit">
+          3-person university study (SD-B-05). My role was the research and the
+          paper — background, sustainability framing, references. The
+          measurements above are the team's, not mine alone.
+        </p>
+        <ul class="tags" aria-label="Technologies">
+          <li>Python</li><li>Hugging Face</li><li>Response Caching</li><li>Sustainable AI</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ===== HEIMO ===== -->
+    <article class="featured" data-reveal style="--d:.1s">
+      <span class="tag-feature">built &amp; shipped solo</span>
+      <div>
+        <span class="frame">deployed on AWS</span>
         <h3>Heimo — Verified Student Housing</h3>
         <p>
-          A full-stack housing platform I designed and deployed end to end on
-          AWS — live on its own domain with SSL, the database off the public
-          internet, and backups automated.
+          A full-stack housing platform I designed and deployed end to end.
+          Live on its own domain with SSL, the database off the public
+          internet, and backups that run nightly without anyone remembering to.
         </p>
         <ul class="facts">
           <li>Multi-tier VPC: public EC2 web tier, private RDS MySQL with no public access</li>
-          <li>S3 for versioned backups + a nightly automated mysqldump job</li>
-          <li>Least-privilege IAM roles — no static keys on the server — and per-tier security groups</li>
+          <li>Nightly automated mysqldump to versioned S3 — recoverable, not hoped-for</li>
+          <li>Least-privilege IAM roles, no static keys on the server, per-tier security groups</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
           <li>AWS</li><li>EC2</li><li>RDS</li><li>VPC</li><li>S3</li><li>IAM</li><li>PHP</li><li>MySQL</li>
@@ -395,32 +485,18 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
       </div>
     </article>
 
-    <!-- ===== MAIN GRID ===== -->
+    <!-- ===== SUPPORTING ===== -->
     <div class="grid">
       <article class="card" data-reveal>
         <span class="frame">transformer fine-tuning · adversarial NLI</span>
         <h3>RoBERTa Baseline for Adversarial NLI</h3>
         <ul class="facts">
-          <li>Fine-tuned RoBERTa-base on all three ANLI rounds — the fair control for a 3-person team study</li>
-          <li>60.2 / 44.3 / 43.8% on R1/R2/R3 test; ~10.6h training on Apple M4 (MPS)</li>
-          <li>R1-only ablation + per-class error analysis; honest "competitive, not dominant" comparison vs the curriculum model</li>
+          <li>Fine-tuned RoBERTa-base across all three ANLI rounds — the fair control for a 3-person team study</li>
+          <li>60.2 / 44.3 / 43.8% on R1/R2/R3 test; ~11h training on a single Apple M4 (MPS), no cloud spend</li>
+          <li>R1-only ablation and per-class error analysis; reported as competitive, not dominant, against the curriculum model</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
           <li>PyTorch</li><li>Hugging Face</li><li>RoBERTa</li><li>ANLI</li><li>MPS</li>
-        </ul>
-      </article>
-
-      <article class="card" data-reveal style="--d:.1s">
-        <span class="frame">green software · applied research</span>
-        <h3>Green Caching for AI Features</h3>
-        <ul class="facts">
-          <li>Group research (SD-B-05): response caching to cut wasted AI model calls</li>
-          <li>Measured −30% model calls, −17.4% latency, 100% output consistency on a 50-request workload</li>
-          <li>My role: research &amp; paper — background, sustainability framing, references</li>
-          <li>Roadmap (future.md): semantic caching + real energy measurement via CodeCarbon</li>
-        </ul>
-        <ul class="tags" aria-label="Technologies">
-          <li>Python</li><li>Hugging Face</li><li>Response Caching</li><li>Sustainable AI</li>
         </ul>
       </article>
 
@@ -429,7 +505,8 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
         <h3>Neural Network from Scratch</h3>
         <ul class="facts">
           <li>MNIST classifier in pure NumPy — no PyTorch, no autograd</li>
-          <li>Forward pass, backprop, and cross-entropy with hand-derived gradients</li>
+          <li>Forward pass, backprop and cross-entropy with hand-derived gradients</li>
+          <li>Written so the maths is debuggable, not just the code</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
           <li>NumPy</li><li>MNIST</li><li>Backprop</li>
@@ -437,22 +514,22 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
       </article>
     </div>
 
-    <!-- ===== EXPLORATIONS (AI-assisted learning projects) ===== -->
+    <!-- ===== EXPLORATIONS ===== -->
     <div class="work-head" data-reveal style="margin-top:clamp(3.5rem,7vw,5.5rem)">
       <p class="eyebrow">explorations</p>
       <p>
-        How I've been learning the agentic-AI and MCP stack — fast prototypes,
-        built with heavy AI assistance. Here for honesty, not as headline work.
+        How I've been learning the agentic-AI and MCP stack. Fast prototypes,
+        built with heavy AI assistance — listed for honesty, not as headline work.
       </p>
     </div>
 
-    <div class="grid">
+    <div class="grid grid-3">
       <article class="card" data-reveal>
         <span class="frame">human-in-the-loop control for Claude Code</span>
         <h3>Agentic Approval System</h3>
         <ul class="facts">
-          <li>Telegram Approve / Deny layer over Claude Code's permission prompts</li>
-          <li>Custom MCP server + FastAPI backend on Railway</li>
+          <li>Telegram approve/deny layer over Claude Code's permission prompts</li>
+          <li>Custom MCP server plus a FastAPI backend on Railway</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
           <li>Python</li><li>FastAPI</li><li>MCP</li><li>Telegram</li><li>Railway</li>
@@ -460,11 +537,11 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
       </article>
 
       <article class="card" data-reveal style="--d:.1s">
-        <span class="frame">always-on agent on free-tier GCP</span>
+        <span class="frame">always-on agent, free-tier GCP</span>
         <h3>Hermes Agent on GCP</h3>
         <ul class="facts">
           <li>Self-hosted open-source agent on a free-tier e2-micro VPS</li>
-          <li>Operated 24/7 through a Telegram control bot</li>
+          <li>Runs 24/7 under systemd, driven from a Telegram control bot</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
           <li>GCP</li><li>Linux</li><li>systemd</li><li>Telegram</li>
@@ -486,22 +563,6 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
   </div>
 </section>
 
-<!-- ==================== NOW ==================== -->
-<section id="now" aria-label="Currently building">
-  <div class="wrap">
-    <p class="eyebrow" data-reveal>now</p>
-    <h2 data-reveal style="--d:.08s">Currently building</h2>
-
-    <!-- EDIT: update as your work changes -->
-    <ul class="now-list" data-reveal style="--d:.16s">
-      <li><b>Deepening ML foundations</b> — CNNs in PyTorch and transformer fine-tuning</li>
-      <li><b>Extending the Green Caching project</b> — semantic caching &amp; measured energy (CodeCarbon), per the future.md roadmap</li>
-      <li><b>Learning the agentic-AI / MCP stack</b> — finished Anthropic's MCP course; prototyping with it</li>
-    </ul>
-    <span class="now-stamp wrap" data-reveal style="--d:.2s">updated july 2026</span>
-  </div>
-</section>
-
 <!-- ==================== ABOUT + SKILLS ==================== -->
 <section id="about" aria-label="About and skills">
   <div class="wrap">
@@ -514,18 +575,27 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
         <p data-reveal>
           I'm an MSc AI/ML student in Berlin. Coursework is the baseline; the
           projects are where it gets real — <b>full-stack apps I deploy on AWS
-          myself</b>, ML implemented from the math up, and applied data research.
+          myself</b>, ML implemented from the maths up, and applied research into
+          what AI features actually cost to run.
         </p>
         <p data-reveal style="--d:.08s">
-          My strongest, most genuine work is hands-on: standing up cloud
-          infrastructure and working problems from the fundamentals rather than
-          just wiring tools together. I'm also learning the <b>agentic-AI / MCP</b>
-          stack — fast prototypes, and honest about where AI did the heavy lifting.
+          The through-line is spend. Most teams shipping AI features are paying
+          for calls they've already made and for infrastructure nobody tuned.
+          I'm useful at both ends: <b>standing up the cloud</b> and
+          <b>bringing the inference bill down</b>.
         </p>
         <p data-reveal style="--d:.16s">
           Looking for a small, sharp European team (English-speaking) where I can
-          grow as an ML / data engineer — as an intern or working student.
+          grow as an ML or data engineer — as an intern or working student.
         </p>
+
+        <!-- EDIT: update as your work changes -->
+        <ul class="now" data-reveal style="--d:.24s">
+          <li><b>Extending Green Caching</b> — semantic caching and measured energy via CodeCarbon</li>
+          <li><b>Deepening ML foundations</b> — CNNs in PyTorch and transformer fine-tuning</li>
+          <li><b>Learning the agentic-AI / MCP stack</b> — finished Anthropic's MCP course, prototyping with it</li>
+        </ul>
+        <span class="now-stamp" data-reveal style="--d:.28s">updated august 2026</span>
       </div>
 
       <div>
@@ -533,7 +603,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
         <div class="skill-group" data-reveal>
           <h3>Machine learning</h3>
           <ul class="chips">
-            <li>PyTorch</li><li>Deep Learning</li><li>CNNs</li><li>NLP / NLI</li><li>NumPy</li>
+            <li>PyTorch</li><li>Deep Learning</li><li>CNNs</li><li>NLP / NLI</li><li>NumPy</li><li>Hugging Face</li>
           </ul>
         </div>
         <div class="skill-group" data-reveal style="--d:.08s">
@@ -543,15 +613,15 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
           </ul>
         </div>
         <div class="skill-group" data-reveal style="--d:.16s">
-          <h3>Data &amp; sustainability</h3>
+          <h3>Cost &amp; efficiency</h3>
           <ul class="chips">
-            <li>Plotly</li><li>Data Visualization</li><li>Green Software Patterns</li><li>Efficient Inference</li><li>Hugging Face</li>
+            <li>Response Caching</li><li>Efficient Inference</li><li>Green Software Patterns</li><li>Plotly</li><li>Data Visualization</li>
           </ul>
         </div>
         <div class="skill-group" data-reveal style="--d:.24s">
           <h3>Agentic AI · learning</h3>
           <ul class="chips">
-            <li>Claude API</li><li>MCP</li><li>MCP Course · Anthropic</li><li>FastAPI</li><li>GCP</li><li>Prompt Engineering</li>
+            <li>Claude API</li><li>MCP</li><li>MCP Course · Anthropic</li><li>FastAPI</li><li>GCP</li>
           </ul>
         </div>
       </div>
@@ -563,10 +633,10 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 <section id="contact" class="contact" aria-label="Contact">
   <div class="wrap">
     <p class="eyebrow" data-reveal>contact</p>
-    <h2 data-reveal style="--d:.08s">Let's build something real.</h2>
+    <h2 data-reveal style="--d:.08s">Tell me what your inference bill looks like.</h2>
     <p data-reveal style="--d:.16s">
-      Available for ML, data &amp; cloud internships and working-student roles
-      across Europe. I reply fast.
+      Available for ML, data and cloud roles across Europe — internships and
+      working-student positions. I reply fast.
     </p>
     <div class="contact-links" data-reveal style="--d:.24s">
       <a class="btn btn-primary" href="mailto:viswasvinayakumar@gmail.com">email me</a>
@@ -604,7 +674,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
     entries.forEach(function (entry) {
       if (entry.isIntersecting) { entry.target.classList.add("in"); io.unobserve(entry.target); }
     });
-  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  }, { threshold: 0.04, rootMargin: "0px 0px -2% 0px" });
   items.forEach(function (el) { io.observe(el); });
 })();
 </script>
