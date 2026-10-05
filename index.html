@@ -233,8 +233,9 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 }
 .facts b{color:var(--text);font-weight:500}
 
-/* the honest credit line — stated, not buried */
-.credit{
+/* the honest credit line — stated, not buried
+   (the second selector beats `.featured>div>p` on featured cards) */
+.credit,.featured>div>p.credit{
   margin-top:1.2rem;font-family:var(--f-mono);font-size:.76rem;line-height:1.7;
   color:var(--faint);border-left:2px solid var(--line);padding-left:.8rem;
 }
@@ -684,6 +685,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
       <a class="btn btn-primary" href="mailto:viswasvinayakumar@gmail.com">email me</a>
       <a class="btn btn-ghost" href="https://github.com/viswas-vinayakumar" rel="noopener" target="_blank">github</a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/viswas-vinayakumar-5659aa228" rel="noopener" target="_blank">linkedin</a>
+      <a class="btn btn-ghost" href="https://x.com/vichu_learns" rel="noopener" target="_blank">x</a>
     </div>
   </div>
 </section>
