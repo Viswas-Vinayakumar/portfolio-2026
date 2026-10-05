@@ -485,6 +485,48 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
       </div>
     </article>
 
+    <!-- ===== SMARTNOTES-AI ===== -->
+    <article class="featured" data-reveal style="--d:.1s">
+      <span class="tag-feature">v1 · in testing</span>
+      <div>
+        <span class="frame">macOS app · for my own M.Sc. lectures</span>
+        <h3>SmartNotes-AI — lectures in, study notes out</h3>
+        <p>
+          Press Record in the lecture hall and Stop at the end. The Mac
+          transcribes the lecture on-device, Claude turns it into structured
+          notes, and each lecture merges into one notebook per course — deadlines
+          go straight into the calendar, and every line links to the second it
+          was said.
+        </p>
+        <ul class="facts">
+          <li>On-device Whisper (WhisperKit, Core ML) — audio never leaves the laptop; crash-safe 5-minute chunks</li>
+          <li>Resumable five-step pipeline; Claude's output is schema-validated, then merged by deterministic, tested Swift — 327 automated checks</li>
+          <li>Deadlines de-duplicated across lectures and synced to the calendar; one-click read-only sharing on GitHub Pages</li>
+        </ul>
+        <p class="credit">
+          Designed and directed by me; built with Claude Code as a pair
+          programmer — a written spec, a plan, test-first code and a review for
+          every feature.
+        </p>
+        <ul class="tags" aria-label="Technologies">
+          <li>Swift</li><li>SwiftUI</li><li>WhisperKit</li><li>Core ML</li><li>Claude</li><li>EventKit</li><li>GitHub Pages</li>
+        </ul>
+        <p style="margin-top:1.2rem">
+          <a class="btn btn-ghost" href="https://viswas-vinayakumar.github.io/smartnotes-ai-docs/" rel="noopener" target="_blank">Read the documentation →</a>
+        </p>
+      </div>
+
+      <div class="term" role="img" aria-label="Pipeline: microphone audio in five-minute chunks, on-device Whisper transcript, Claude with a JSON schema, a pure Swift merge into the course notebook, then the rendered page and calendar; every step can re-run alone">
+        <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
+        <span class="t">mic</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 5-min AAC chunks<br />
+        <span class="t">whisper</span>&nbsp;→ <span class="w">transcript</span> · on-device<br />
+        <span class="t">claude</span>&nbsp;&nbsp;→ <span class="w">JSON</span> · schema-checked<br />
+        <span class="t">merge</span>&nbsp;&nbsp;&nbsp;→ course notebook · pure Swift<br />
+        <span class="t">render</span>&nbsp;&nbsp;→ notes page · calendar<br />
+        <span class="ok">✔ resumable — any step re-runs alone</span>
+      </div>
+    </article>
+
     <!-- ===== SUPPORTING ===== -->
     <div class="grid">
       <article class="card" data-reveal>
