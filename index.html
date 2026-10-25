@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Viswas Vinayakumar — cut 30% of your token burn</title>
-<meta name="description" content="I build the caching and cloud layer that stops teams paying twice for the same model call. Measured: 30% fewer model calls, 17% lower latency, zero drop in answer quality." />
+<title>Viswas Vinayakumar — ML &amp; data</title>
+<meta name="description" content="MSc Data Science (AI/ML) student in Berlin. Retrieval evaluation, transformer fine-tuning, an on-device speech-to-notes pipeline, and AWS deployment — each with code, results and stated limits." />
 
 <!-- ===================================================================
   VISWAS VINAYAKUMAR — PORTFOLIO
@@ -12,9 +12,10 @@
 
   HOW TO EDIT:
   - Editable blocks are marked with an "EDIT:" comment.
-  - The hero proof grid is 50 cells = the 50-request benchmark.
-    15 carry class="hit" (30% cache hits). Change both together or the
-    headline number and the picture stop agreeing.
+  - Featured = at most three projects. A project earns a slot with public
+    evidence (code, demo or docs), a stated result, and an honest status.
+    A new project replaces the weakest featured one; it doesn't just add on.
+  - Every number on this page should be traceable to a repo, log or README.
 =================================================================== -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,17 +25,16 @@
 <style>
 /* ==================== TOKENS ==================== */
 :root{
-  --bg:        #fbfdfd;
+  --bg:        #fafafa;
   --surface:   #ffffff;
-  --tint:      #f1f7f6;
-  --line:      #e2eae9;
-  --spent:     #dbe4e3;   /* a request that hit the model */
-  --text:      #15262b;
-  --muted:     #51666d;
-  --faint:     #7e9097;
-  --teal:      #0d9488;   /* accent — a request served from cache */
-  --teal-deep: #0b6e66;
-  --teal-soft: rgba(13,148,136,.10);
+  --tint:      #f3f3f3;
+  --line:      #e4e4e4;
+  --text:      #111111;
+  --muted:     #555555;
+  --faint:     #666666;
+  --teal:      #000000;   /* accent (black) */
+  --teal-deep: #111111;
+  --teal-soft: rgba(0,0,0,.06);
 
   --f-display: "Archivo", system-ui, sans-serif;
   --f-body:    "IBM Plex Sans", system-ui, sans-serif;
@@ -54,13 +54,13 @@ body{
   font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-::selection{background:var(--teal);color:#fff}
+::selection{background:var(--teal-deep);color:#fff}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
 
 .skip{
   position:absolute;left:-9999px;top:0;z-index:200;
-  background:var(--teal);color:#fff;padding:.6rem 1rem;
+  background:var(--teal-deep);color:#fff;padding:.6rem 1rem;
   font-family:var(--f-mono);font-size:.85rem;border-radius:0 0 8px 0;
 }
 .skip:focus{left:0}
@@ -79,16 +79,10 @@ h2{font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:600;margin:.8rem 0 0}
 
 section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 
-/* numerals: expanded width axis, tabular, so figures line up and read as data */
-.fig{
-  font-family:var(--f-display);font-stretch:118%;
-  font-variant-numeric:tabular-nums;letter-spacing:-.01em;
-}
-
 /* ==================== NAV ==================== */
 .nav{
   position:fixed;inset:0 0 auto 0;z-index:100;
-  background:rgba(251,253,253,.82);
+  background:rgba(250,250,250,.82);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid transparent;
   transition:border-color .4s var(--ease);
@@ -114,14 +108,7 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 .nav-links a:hover::after{transform:scaleX(1)}
 
 /* ==================== HERO ==================== */
-.hero{
-  min-height:90svh;display:grid;align-items:center;
-  padding:8rem 0 4rem;
-}
-.hero-inner{
-  display:grid;grid-template-columns:1.15fr .85fr;
-  gap:clamp(2rem,5vw,4rem);align-items:center;
-}
+.hero{padding:9rem 0 3.5rem}
 .hero-id{
   font-family:var(--f-mono);font-size:.8rem;color:var(--muted);
   letter-spacing:.04em;margin-bottom:1.4rem;
@@ -130,16 +117,11 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 
 .hero h1{
   font-size:clamp(2.2rem,5.2vw,3.5rem);font-weight:700;
-  max-width:15ch;text-wrap:balance;
+  max-width:18ch;text-wrap:balance;
 }
-.hero h1 .fig{color:var(--teal);font-weight:800}
 
 .hero-sub{
-  margin-top:1.5rem;max-width:44ch;color:var(--muted);font-size:1.08rem;
-}
-.hero-sub b{
-  color:var(--text);font-weight:500;
-  display:block;margin-bottom:.5rem;
+  margin-top:1.5rem;max-width:58ch;color:var(--muted);font-size:1.08rem;
 }
 
 .hero-cta{margin-top:2.1rem;display:flex;gap:1rem;flex-wrap:wrap}
@@ -148,12 +130,12 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
   display:inline-flex;align-items:center;gap:.55rem;
   font-family:var(--f-mono);font-size:.88rem;font-weight:500;
   padding:.85rem 1.5rem;border-radius:10px;
-  transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+  transition:border-color .3s var(--ease), background-color .3s var(--ease);
 }
-.btn-primary{background:var(--teal);color:#fff;box-shadow:0 1px 2px rgba(13,148,136,.2)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px var(--teal-soft)}
+.btn-primary{background:var(--teal-deep);color:#fff}
+.btn-primary:hover{background:#333333}
 .btn-ghost{border:1px solid var(--line);background:var(--surface);color:var(--text)}
-.btn-ghost:hover{transform:translateY(-2px);border-color:var(--teal)}
+.btn-ghost:hover{border-color:var(--teal)}
 
 .status{
   margin-top:2.2rem;display:inline-flex;align-items:center;gap:.6rem;
@@ -161,60 +143,22 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
   border:1px solid var(--line);border-radius:99px;padding:.5rem 1rem;
   background:var(--surface);
 }
-.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2.4s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-
-/* —— SIGNATURE: the benchmark, drawn ——
-   50 cells = the 50-request workload. 15 teal = served from cache. */
-.proof{
-  background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--rad);padding:1.5rem;
-  box-shadow:0 14px 44px -28px rgba(13,148,136,.5);
-}
-.proof-cap{
-  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--faint);
-}
-.workload{
-  display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin:1.1rem 0 1.3rem;
-}
-.workload i{display:block;aspect-ratio:1;border-radius:3px;background:var(--spent)}
-.workload i.hit{
-  background:var(--teal);
-  animation:fill .45s var(--ease) backwards;
-  animation-delay:calc(var(--i) * .055s + .45s);
-}
-@keyframes fill{
-  from{background:var(--spent);transform:scale(.5)}
-  to{background:var(--teal);transform:scale(1)}
-}
-
-.readout{list-style:none;display:grid;gap:.55rem;border-top:1px solid var(--line);padding-top:1.1rem}
-.readout li{display:flex;align-items:baseline;gap:.7rem;font-size:.9rem;color:var(--muted)}
-.readout .fig{
-  color:var(--text);font-weight:700;font-size:1.15rem;
-  min-width:3.1rem;text-align:right;flex:none;
-}
-.readout .hit-key{color:var(--teal-deep)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);flex:none}
 
 /* ==================== WORK ==================== */
-.work-head p{color:var(--muted);max-width:54ch;margin-top:1rem}
+.work-head p{color:var(--muted);max-width:58ch;margin-top:1rem}
 
 .featured{
   margin-top:2.8rem;position:relative;
   background:var(--surface);
   border:1.5px solid var(--teal);border-radius:var(--rad);
   padding:clamp(1.5rem,4vw,2.6rem);
-  box-shadow:0 8px 40px -16px var(--teal-soft);
   display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.5rem,4vw,2.8rem);
-  transition:transform .45s var(--ease), box-shadow .45s var(--ease);
 }
-.featured:hover{transform:translateY(-4px);box-shadow:0 18px 50px -14px rgba(13,148,136,.25)}
-.featured.solo{grid-template-columns:1fr;max-width:none}
 .tag-feature{
   position:absolute;top:-12px;left:24px;
   font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
-  background:var(--teal);color:#fff;padding:.3rem .7rem;border-radius:6px;font-weight:500;
+  background:var(--teal-deep);color:#fff;padding:.3rem .7rem;border-radius:6px;font-weight:500;
 }
 .featured h3{font-size:clamp(1.3rem,2.5vw,1.65rem);font-weight:600}
 .frame{
@@ -233,7 +177,7 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 }
 .facts b{color:var(--text);font-weight:500}
 
-/* the honest credit line — stated, not buried
+/* the honest credit / limits line — stated, not buried
    (the second selector beats `.featured>div>p` on featured cards) */
 .credit,.featured>div>p.credit{
   margin-top:1.2rem;font-family:var(--f-mono);font-size:.76rem;line-height:1.7;
@@ -246,44 +190,49 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
   background:var(--tint);border:1px solid var(--line);border-radius:6px;padding:.28rem .6rem;
 }
 
-.term{
+/* project links: code / demo / docs */
+.links{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:1.2rem;list-style:none}
+.links a{
+  font-family:var(--f-mono);font-size:.82rem;color:var(--teal-deep);font-weight:500;
+  border-bottom:1px solid var(--teal-soft);padding-bottom:1px;
+}
+.links a:hover{border-bottom-color:var(--teal)}
+
+/* architecture / results panel beside a featured project */
+.arch{
   background:var(--tint);border:1px solid var(--line);border-radius:10px;
   font-family:var(--f-mono);font-size:.8rem;line-height:1.95;
   padding:1.2rem 1.3rem;color:var(--muted);align-self:center;overflow-x:auto;
 }
-.term .bar{display:flex;gap:6px;margin-bottom:.9rem}
-.term .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.term .t{color:var(--teal-deep)}
-.term .w{color:var(--text)}
-.term .ok{color:var(--teal-deep);font-weight:500}
+.arch-cap{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  display:block;margin-bottom:.6rem;
+}
+.arch .t{color:var(--teal-deep)}
+.arch .w{color:var(--text)}
+.arch .ok{color:var(--teal-deep);font-weight:500}
+.arch table{border-collapse:collapse;width:100%;line-height:1.5}
+.arch th,.arch td{padding:.4rem .5rem;text-align:right;border-bottom:1px solid var(--line);font-weight:400}
+.arch th:first-child,.arch td:first-child{text-align:left;padding-left:0}
+.arch thead th{color:var(--faint);font-size:.72rem}
+.arch tbody tr:last-child td{border-bottom:0}
+.arch .mine td{color:var(--text);font-weight:500}
 
-.grid{margin-top:1.5rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
-.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid{margin-top:1.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
 .card{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--rad);
   padding:1.7rem;display:flex;flex-direction:column;
-  transition:transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+  transition:border-color .3s var(--ease);
 }
-.card:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 12px 32px -16px var(--teal-soft)}
+.card:hover{border-color:var(--teal)}
 .card h3{font-size:1.12rem;font-weight:600}
-.card .facts{flex:1}
+.card .facts{flex:1;align-content:start}
 
-/* ==================== ABOUT / SKILLS ==================== */
-.about-grid{margin-top:2.8rem;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,3.5rem)}
-.about-grid>div>p{color:var(--muted);margin-bottom:1rem}
-.about-grid b{color:var(--text);font-weight:500}
-
-.now{
-  margin-top:1.8rem;border-top:1px solid var(--line);padding-top:1.4rem;
-  display:grid;gap:.7rem;list-style:none;
-}
-.now li{color:var(--muted);font-size:.95rem;position:relative;padding-left:1.3rem}
-.now li::before{content:"●";position:absolute;left:0;top:.1em;color:var(--teal);font-size:.55rem}
-.now b{color:var(--text);font-weight:500}
-.now-stamp{font-family:var(--f-mono);font-size:.72rem;color:var(--faint);margin-top:1rem;display:block}
+/* ==================== SKILLS / BACKGROUND ==================== */
+.split{margin-top:2.8rem;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,3.5rem)}
 
 .skill-group{margin-bottom:1.5rem}
-.skill-group h3{
+.group-h{
   font-family:var(--f-mono);font-size:.72rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--faint);font-weight:500;margin-bottom:.65rem;
 }
@@ -291,9 +240,13 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 .chips li{
   font-family:var(--f-mono);font-size:.78rem;color:var(--text);
   background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.38rem .72rem;
-  transition:border-color .3s var(--ease), transform .3s var(--ease);
 }
-.chips li:hover{border-color:var(--teal);transform:translateY(-2px)}
+
+.timeline{list-style:none;display:grid;gap:1.3rem;margin-bottom:2rem}
+.timeline h3{font-family:var(--f-body);font-size:1rem;font-weight:600;letter-spacing:0;line-height:1.4}
+.timeline .when{font-family:var(--f-mono);font-size:.74rem;color:var(--faint);display:block;margin-top:.15rem}
+.timeline p{color:var(--muted);font-size:.95rem;margin-top:.4rem}
+.plain{list-style:none;display:grid;gap:.35rem;color:var(--muted);font-size:.95rem}
 
 /* ==================== CONTACT ==================== */
 .contact{text-align:center;background:var(--tint)}
@@ -308,36 +261,32 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 
 /* ==================== REVEALS ==================== */
 [data-reveal]{
-  opacity:0;transform:translateY(18px);
-  transition:opacity .55s var(--ease), transform .55s var(--ease);
-  transition-delay:var(--d,0s);will-change:opacity,transform;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+  transition-delay:var(--d,0s);
 }
 [data-reveal].in{opacity:1;transform:none}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none!important;transition:none!important}
+  *,*::before,*::after{transition:none!important}
   [data-reveal]{opacity:1;transform:none}
-  .workload i.hit{background:var(--teal)}
 }
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width:900px){
-  .hero{padding-top:7rem}
-  .hero-inner{grid-template-columns:1fr;gap:2.8rem}
-  .hero h1{max-width:18ch}
-  .proof{max-width:420px}
+  .hero{padding-top:7.5rem}
   .featured{grid-template-columns:1fr}
-  .about-grid{grid-template-columns:1fr}
-  .grid,.grid-3{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
 }
 @media (max-width:560px){
   body{font-size:1rem}
-  .nav-links{gap:1.2rem}
-  .hero-cta .btn{width:100%;justify-content:center}
-  .status{font-size:.7rem}
-  .term{font-size:.72rem}
-  .workload{gap:4px}
+  .wrap,.nav-inner{padding:0 16px}
+  .nav-links{gap:1.1rem}
+  .hero-cta .btn{flex:1 1 auto;justify-content:center}
+  .status{font-size:.7rem;border-radius:12px}
+  .arch{font-size:.72rem}
 }
 </style>
 </head>
@@ -352,7 +301,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
     <nav aria-label="Primary">
       <ul class="nav-links">
         <li><a href="#work">work</a></li>
-        <li><a href="#about">about</a></li>
+        <li><a href="#background">background</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
     </nav>
@@ -363,59 +312,29 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 
 <!-- ==================== HERO ==================== -->
 <section class="hero" id="top" aria-label="Introduction">
-  <div class="wrap hero-inner">
+  <div class="wrap">
+    <!-- EDIT: name / role line -->
+    <p class="hero-id" data-reveal><b>Viswas Vinayakumar</b> · MSc Data Science (AI/ML) · Berlin</p>
 
-    <div>
-      <!-- EDIT: name / role line -->
-      <p class="hero-id" data-reveal><b>Viswas Vinayakumar</b> · AI/ML Engineer · Berlin</p>
+    <h1 data-reveal style="--d:.08s">I build machine-learning systems and measure whether they work.</h1>
 
-      <!-- EDIT: headline — the offer, not the job title -->
-      <h1 data-reveal style="--d:.08s">Cut <span class="fig">30%</span> of your token burn in under a day.</h1>
+    <p class="hero-sub" data-reveal style="--d:.16s">
+      Search and retrieval, transformer fine-tuning, an on-device speech-to-notes
+      pipeline, and the cloud setup underneath. Each project below links to its
+      code, demo or documentation and says what it doesn't prove yet.
+    </p>
 
-      <p class="hero-sub" data-reveal style="--d:.16s">
-        <b>One-time implementation. Permanent savings.</b>
-        I build the caching and cloud layer that stops teams paying twice
-        for the same model call — with no drop in answer quality.
-      </p>
-
-      <div class="hero-cta" data-reveal style="--d:.24s">
-        <a class="btn btn-primary" href="#work">See the numbers →</a>
-        <a class="btn btn-ghost" href="#contact">Get in touch</a>
-      </div>
-
-      <!-- EDIT: availability -->
-      <p class="status" data-reveal style="--d:.32s">
-        <span class="dot" aria-hidden="true"></span>
-        open to ML, data &amp; cloud roles — Berlin · remote (EU)
-      </p>
+    <div class="hero-cta" data-reveal style="--d:.24s">
+      <a class="btn btn-primary" href="#work">See the work →</a>
+      <a class="btn btn-ghost" href="https://github.com/viswas-vinayakumar" rel="noopener" target="_blank">GitHub</a>
+      <a class="btn btn-ghost" href="mailto:viswasvinayakumar@gmail.com">Email</a>
     </div>
 
-    <!-- SIGNATURE: the measured benchmark, drawn.
-         50 cells = 50 requests. 15 teal = served from cache. -->
-    <figure class="proof" data-reveal style="--d:.4s">
-      <figcaption class="proof-cap">measured · 50-request workload</figcaption>
-
-      <div class="workload" role="img"
-           aria-label="Fifty request cells; fifteen of them, thirty percent, were served from cache instead of calling the model">
-        <i></i><i></i><i></i><i class="hit" style="--i:0"></i><i></i>
-        <i></i><i class="hit" style="--i:1"></i><i></i><i class="hit" style="--i:2"></i><i></i>
-        <i></i><i></i><i class="hit" style="--i:3"></i><i></i><i></i>
-        <i class="hit" style="--i:4"></i><i></i><i></i><i class="hit" style="--i:5"></i><i></i>
-        <i></i><i class="hit" style="--i:6"></i><i></i><i></i><i class="hit" style="--i:7"></i>
-        <i></i><i></i><i class="hit" style="--i:8"></i><i></i><i></i>
-        <i class="hit" style="--i:9"></i><i></i><i></i><i></i><i class="hit" style="--i:10"></i>
-        <i></i><i></i><i class="hit" style="--i:11"></i><i></i><i></i>
-        <i class="hit" style="--i:12"></i><i></i><i></i><i></i><i class="hit" style="--i:13"></i>
-        <i></i><i></i><i class="hit" style="--i:14"></i><i></i><i></i>
-      </div>
-
-      <ul class="readout">
-        <li><span class="fig hit-key">15</span> requests served from cache, not the model</li>
-        <li><span class="fig">17%</span> lower latency</li>
-        <li><span class="fig">0</span> answers changed by caching</li>
-      </ul>
-    </figure>
-
+    <!-- EDIT: availability -->
+    <p class="status" data-reveal style="--d:.32s">
+      <span class="dot" aria-hidden="true"></span>
+      looking for a working-student role in ML or data · 20 h/week · Berlin or remote
+    </p>
   </div>
 </section>
 
@@ -423,86 +342,69 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 <section id="work" aria-label="Selected work">
   <div class="wrap">
     <div class="work-head">
-      <p class="eyebrow" data-reveal>the work</p>
-      <h2 data-reveal style="--d:.08s">Cheaper inference. Infrastructure that stays up.</h2>
+      <p class="eyebrow" data-reveal>selected work</p>
+      <h2 data-reveal style="--d:.08s">Built, evaluated, and honest about the limits.</h2>
     </div>
 
-    <!-- ===== THE RESULT BEHIND THE HEADLINE ===== -->
-    <article class="featured solo" data-reveal style="--d:.1s">
-      <span class="tag-feature">the 30%</span>
+    <!-- ===== COACH SEARCH ===== -->
+    <article class="featured" data-reveal style="--d:.1s">
+      <span class="tag-feature">prototype · evaluated</span>
       <div>
-        <span class="frame">response caching for AI features</span>
-        <h3>Green Caching — a third fewer calls to the model</h3>
+        <span class="frame">information retrieval · German &amp; English</span>
+        <h3>Coach Search — keyword vs. semantic vs. hybrid, measured</h3>
         <p>
-          Teams pay full price every time a model answers a question it has
-          already answered. A response-caching layer intercepts the repeats:
-          same output, a third fewer billed calls, and the saving compounds
-          every day after the one it ships.
+          A company describes what it needs in its own words, for example
+          "conflict resolution for our sales team in Hamburg, on site, max €2,000".
+          The system pulls out the hard constraints, ranks coach profiles, and
+          shows the sentence that made each one match.
         </p>
         <ul class="facts">
-          <li><b>30% fewer model calls</b> and <b>17% lower latency</b> across a 50-request benchmark</li>
-          <li><b>100% output consistency</b> — not one answer changed because it came from cache</li>
-          <li>Next: semantic caching so near-identical prompts hit too, with energy measured via CodeCarbon</li>
+          <li>Graded on 15 hand-labelled queries, each built to test one weakness (synonyms, exact terms, an English query, German compounds): hybrid search reached <b>Recall@5 1.00 and MRR@10 0.90</b>, keyword search alone 0.73 / 0.67</li>
+          <li>BM25 found no correct coach for 4 of 15 queries. Hybrid and semantic search came out tied (MRR 0.90 vs. 0.88, a two-query gap), and the write-up says so</li>
+          <li>Tried sentence-level chunking and kept it out of ranking: it lowered MRR from 0.88 to 0.76 on these short profiles, so it's used only to explain matches</li>
         </ul>
         <p class="credit">
-          3-person university study (SD-B-05). My role was the research and the
-          paper — background, sustainability framing, references. The
-          measurements above are the team's, not mine alone.
+          Limits, stated in the repo: 30 synthetic profiles, 15 queries, one
+          person's labels. A 0.07 difference in MRR is a single query.
         </p>
         <ul class="tags" aria-label="Technologies">
-          <li>Python</li><li>Hugging Face</li><li>Response Caching</li><li>Sustainable AI</li>
+          <li>Python</li><li>BM25</li><li>Sentence Transformers</li><li>Rank fusion (RRF)</li><li>Streamlit</li>
         </ul>
-      </div>
-    </article>
-
-    <!-- ===== HEIMO ===== -->
-    <article class="featured" data-reveal style="--d:.1s">
-      <span class="tag-feature">built &amp; shipped solo</span>
-      <div>
-        <span class="frame">deployed on AWS</span>
-        <h3>Heimo — Verified Student Housing</h3>
-        <p>
-          A full-stack housing platform I designed and deployed end to end.
-          Live on its own domain with SSL, the database off the public
-          internet, and backups that run nightly without anyone remembering to.
-        </p>
-        <ul class="facts">
-          <li>Multi-tier VPC: public EC2 web tier, private RDS MySQL with no public access</li>
-          <li>Nightly automated mysqldump to versioned S3 — recoverable, not hoped-for</li>
-          <li>Least-privilege IAM roles, no static keys on the server, per-tier security groups</li>
-        </ul>
-        <ul class="tags" aria-label="Technologies">
-          <li>AWS</li><li>EC2</li><li>RDS</li><li>VPC</li><li>S3</li><li>IAM</li><li>PHP</li><li>MySQL</li>
+        <ul class="links">
+          <li><a href="https://coach-search.streamlit.app/" rel="noopener" target="_blank">Live demo ↗</a></li>
+          <li><a href="https://github.com/Viswas-Vinayakumar/AI-search" rel="noopener" target="_blank">Code &amp; evaluation ↗</a></li>
         </ul>
       </div>
 
-      <div class="term" role="img" aria-label="AWS architecture: internet to an EC2 web tier in a public subnet, a private RDS MySQL with no public IP, nightly versioned S3 backups, and an IAM role with no keys on the server">
-        <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
-        <span class="t">internet</span> → 443 → <span class="w">EC2 · Apache/PHP</span><br />
-        <span class="t">vpc</span>&nbsp;&nbsp;&nbsp;&nbsp; → public / private subnets<br />
-        <span class="t">rds</span>&nbsp;&nbsp;&nbsp;&nbsp; → <span class="w">MySQL</span> · private · no public IP<br />
-        <span class="t">s3</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; → nightly backup · versioned<br />
-        <span class="ok">✔ IAM role — write-only, no keys on the box</span>
+      <div class="arch" role="img" aria-label="Pipeline: the request is parsed for city, budget and format; hard filters apply; BM25 and embedding search each rank the coaches; reciprocal rank fusion merges them; the best-matching sentence explains each result. The demo and the evaluation share one search module.">
+        <span class="arch-cap">how it works</span>
+        <span class="t">parse</span>&nbsp;&nbsp;&nbsp;→ city · budget · format<br />
+        <span class="t">filter</span>&nbsp;&nbsp;→ hard constraints, exact<br />
+        <span class="t">bm25</span>&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="w">keyword</span> ranking<br />
+        <span class="t">embed</span>&nbsp;&nbsp;&nbsp;→ <span class="w">semantic</span> ranking · multilingual<br />
+        <span class="t">rrf</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ fused top coaches<br />
+        <span class="t">explain</span> → best-matching sentence<br />
+        <span class="ok">✔ demo and evaluation share one search.py</span>
       </div>
     </article>
 
     <!-- ===== SMARTNOTES-AI ===== -->
     <article class="featured" data-reveal style="--d:.1s">
-      <span class="tag-feature">v1 · in testing</span>
+      <span class="tag-feature">v1 · in daily testing</span>
       <div>
-        <span class="frame">macOS app · for my own M.Sc. lectures</span>
+        <span class="frame">macOS app · on-device speech + LLM pipeline</span>
         <h3>SmartNotes-AI — lectures in, study notes out</h3>
         <p>
           Press Record in the lecture hall and Stop at the end. The Mac
-          transcribes the lecture on-device, Claude turns it into structured
+          transcribes the lecture on-device, an LLM turns it into structured
           notes, and each lecture merges into one notebook per course — deadlines
-          go straight into the calendar, and every line links to the second it
-          was said.
+          go into the calendar, and every line links to the second it was said.
         </p>
         <ul class="facts">
-          <li>On-device Whisper (WhisperKit, Core ML) — audio never leaves the laptop; crash-safe 5-minute chunks</li>
-          <li>Resumable five-step pipeline; Claude's output is schema-validated, then merged by deterministic, tested Swift — 327 automated checks</li>
-          <li>Deadlines de-duplicated across lectures and synced to the calendar; one-click read-only sharing on GitHub Pages</li>
+          <li>On-device Whisper (WhisperKit, Core ML): audio never leaves the laptop, and it's recorded in 5-minute chunks so a crash loses nothing</li>
+          <li>The LLM must return JSON that matches a schema (one retry with the error fed back). A deterministic Swift merger with no LLM in it folds each lecture into the notebook. <b>587 automated checks</b></li>
+          <li>Resumable five-step pipeline. The notes model is a setting: Claude Code, the Anthropic API, or a local OpenAI-compatible model such as Ollama</li>
+          <li>In progress: an Android companion (Kotlin, on-device Whisper) that records on the phone and syncs through Google Drive. It runs on an emulator but hasn't been tested end to end on a real phone</li>
         </ul>
         <p class="credit">
           Designed and directed by me; built with Claude Code as a pair
@@ -510,163 +412,179 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
           every feature.
         </p>
         <ul class="tags" aria-label="Technologies">
-          <li>Swift</li><li>SwiftUI</li><li>WhisperKit</li><li>Core ML</li><li>Claude</li><li>EventKit</li><li>GitHub Pages</li>
+          <li>Swift</li><li>SwiftUI</li><li>WhisperKit</li><li>Core ML</li><li>Claude</li><li>EventKit</li><li>Kotlin</li>
         </ul>
-        <p style="margin-top:1.2rem">
-          <a class="btn btn-ghost" href="https://viswas-vinayakumar.github.io/smartnotes-ai-docs/" rel="noopener" target="_blank">Read the documentation →</a>
-        </p>
+        <ul class="links">
+          <li><a href="https://viswas-vinayakumar.github.io/smartnotes-ai-docs/" rel="noopener" target="_blank">Technical documentation ↗</a></li>
+        </ul>
       </div>
 
-      <div class="term" role="img" aria-label="Pipeline: microphone audio in five-minute chunks, on-device Whisper transcript, Claude with a JSON schema, a pure Swift merge into the course notebook, then the rendered page and calendar; every step can re-run alone">
-        <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
-        <span class="t">mic</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 5-min AAC chunks<br />
-        <span class="t">whisper</span>&nbsp;→ <span class="w">transcript</span> · on-device<br />
-        <span class="t">claude</span>&nbsp;&nbsp;→ <span class="w">JSON</span> · schema-checked<br />
+      <div class="arch" role="img" aria-label="Pipeline: microphone audio in five-minute chunks, on-device Whisper transcript, an LLM returning schema-checked JSON, a pure Swift merge into the course notebook, then the rendered page and calendar; every step can re-run alone">
+        <span class="arch-cap">pipeline</span>
+        <span class="t">record</span>&nbsp;&nbsp;→ 5-min AAC chunks<br />
+        <span class="t">whisper</span> → <span class="w">transcript</span> · on-device<br />
+        <span class="t">llm</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <span class="w">JSON</span> · schema-checked<br />
         <span class="t">merge</span>&nbsp;&nbsp;&nbsp;→ course notebook · pure Swift<br />
         <span class="t">render</span>&nbsp;&nbsp;→ notes page · calendar<br />
         <span class="ok">✔ resumable — any step re-runs alone</span>
       </div>
     </article>
 
-    <!-- ===== SUPPORTING ===== -->
-    <div class="grid">
-      <article class="card" data-reveal>
+    <!-- ===== ROBERTA ANLI ===== -->
+    <article class="featured" data-reveal style="--d:.1s">
+      <span class="tag-feature">team study · my part: the baseline</span>
+      <div>
         <span class="frame">transformer fine-tuning · adversarial NLI</span>
-        <h3>RoBERTa Baseline for Adversarial NLI</h3>
+        <h3>RoBERTa-base baseline for Adversarial NLI</h3>
+        <p>
+          Our team asked whether a four-stage training curriculum beats ordinary
+          fine-tuning on ANLI, a benchmark built from examples that fooled earlier
+          models. Answering that needs a fair control. Building it was my part.
+        </p>
         <ul class="facts">
-          <li>Fine-tuned RoBERTa-base across all three ANLI rounds — the fair control for a 3-person team study</li>
-          <li>60.2 / 44.3 / 43.8% on R1/R2/R3 test; ~11h training on a single Apple M4 (MPS), no cloud spend</li>
-          <li>R1-only ablation and per-class error analysis; reported as competitive, not dominant, against the curriculum model</li>
+          <li>Fine-tuned RoBERTa-base on all three ANLI rounds: 3 epochs, 10.5 hours on one Apple M4 (MPS), no cloud spend</li>
+          <li>An R1-only ablation and a per-class error analysis alongside the main run</li>
+          <li>Reported the curriculum model as <b>competitive, not dominant</b>: ahead on R1 and R2, behind on the hardest round</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
           <li>PyTorch</li><li>Hugging Face</li><li>RoBERTa</li><li>ANLI</li><li>MPS</li>
         </ul>
-      </article>
+        <ul class="links">
+          <li><a href="https://github.com/Viswas-Vinayakumar/roberta-base-anli-baseline" rel="noopener" target="_blank">Code, logs &amp; report ↗</a></li>
+        </ul>
+      </div>
 
-      <article class="card" data-reveal style="--d:.1s">
-        <span class="frame">foundations before frameworks</span>
-        <h3>Neural Network from Scratch</h3>
-        <ul class="facts">
-          <li>MNIST classifier in pure NumPy — no PyTorch, no autograd</li>
-          <li>Forward pass, backprop and cross-entropy with hand-derived gradients</li>
-          <li>Written so the maths is debuggable, not just the code</li>
-        </ul>
-        <ul class="tags" aria-label="Technologies">
-          <li>NumPy</li><li>MNIST</li><li>Backprop</li>
-        </ul>
-      </article>
+      <div class="arch">
+        <span class="arch-cap">ANLI test accuracy, %</span>
+        <table>
+          <thead><tr><th scope="col">model</th><th scope="col">R1</th><th scope="col">R2</th><th scope="col">R3</th></tr></thead>
+          <tbody>
+            <tr class="mine"><td>baseline (mine)</td><td>60.2</td><td>44.3</td><td>43.8</td></tr>
+            <tr><td>R1-only ablation</td><td>46.0</td><td>33.4</td><td>32.2</td></tr>
+            <tr><td>curriculum (team)</td><td>64.3</td><td>45.1</td><td>40.6</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- ===== MORE WORK ===== -->
+    <div class="work-head" data-reveal style="margin-top:clamp(3.5rem,7vw,5rem)">
+      <p class="eyebrow">more work</p>
     </div>
 
-    <!-- ===== EXPLORATIONS ===== -->
-    <div class="work-head" data-reveal style="margin-top:clamp(3.5rem,7vw,5.5rem)">
-      <p class="eyebrow">explorations</p>
-      <p>
-        How I've been learning the agentic-AI and MCP stack. Fast prototypes,
-        built with heavy AI assistance — listed for honesty, not as headline work.
-      </p>
-    </div>
-
-    <div class="grid grid-3">
+    <div class="grid">
       <article class="card" data-reveal>
-        <span class="frame">human-in-the-loop control for Claude Code</span>
-        <h3>Agentic Approval System</h3>
+        <span class="frame">data analysis · course final project</span>
+        <h3>Football's Great Tightening</h3>
         <ul class="facts">
-          <li>Telegram approve/deny layer over Claude Code's permission prompts</li>
-          <li>Custom MCP server plus a FastAPI backend on Railway</li>
+          <li>49,520 international matches (1872–2026) and twelve analytical questions, with the data's gaps stated where they matter</li>
+          <li>Goals per match fell from 4.34 (1940s) to 2.72, while home advantage barely moved (52.4% → 50.7%)</li>
+          <li>The notebook and the dashboard share one data-prep and theme module, so their figures can't disagree</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
-          <li>Python</li><li>FastAPI</li><li>MCP</li><li>Telegram</li><li>Railway</li>
+          <li>pandas</li><li>Plotly</li><li>Streamlit</li>
+        </ul>
+        <ul class="links">
+          <li><a href="https://football-tightening.streamlit.app/" rel="noopener" target="_blank">Dashboard ↗</a></li>
+          <li><a href="https://github.com/Viswas-Vinayakumar/international-football-dataviz" rel="noopener" target="_blank">Code ↗</a></li>
         </ul>
       </article>
 
-      <article class="card" data-reveal style="--d:.1s">
-        <span class="frame">always-on agent, free-tier GCP</span>
-        <h3>Hermes Agent on GCP</h3>
+      <article class="card" data-reveal style="--d:.08s">
+        <span class="frame">cloud · 3-person course project</span>
+        <h3>Heimo — student housing on AWS</h3>
         <ul class="facts">
-          <li>Self-hosted open-source agent on a free-tier e2-micro VPS</li>
-          <li>Runs 24/7 under systemd, driven from a Telegram control bot</li>
+          <li>My part: the AWS account, deployment, security and backups</li>
+          <li>EC2 web tier in a public subnet. RDS MySQL in a private subnet, reachable only from the web tier's security group</li>
+          <li>Nightly database dump to a versioned S3 bucket through an IAM role, so there are no access keys on the server</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
-          <li>GCP</li><li>Linux</li><li>systemd</li><li>Telegram</li>
+          <li>AWS</li><li>EC2</li><li>RDS</li><li>VPC</li><li>S3</li><li>IAM</li>
+        </ul>
+        <ul class="links">
+          <li><a href="https://heimo-viswa.duckdns.org/" rel="noopener" target="_blank">Live site ↗</a></li>
         </ul>
       </article>
 
-      <article class="card" data-reveal>
-        <span class="frame">the MCP protocol, hands-on</span>
-        <h3>MCP Document Server</h3>
+      <article class="card" data-reveal style="--d:.16s">
+        <span class="frame">research · 3-person university study</span>
+        <h3>Green Caching — response caching for LLM features</h3>
         <ul class="facts">
-          <li>FastMCP server covering all three MCP primitives: tools, resources, prompts</li>
-          <li>Built to understand how agents discover and use capabilities</li>
+          <li>A response cache in front of the model, on a 50-request workload: 30% fewer model calls, 17% lower latency, no answers changed</li>
+          <li>My part was the research and the paper (background, sustainability framing, references). The measurements are the team's</li>
         </ul>
         <ul class="tags" aria-label="Technologies">
-          <li>Python</li><li>FastMCP</li><li>MCP</li>
+          <li>Python</li><li>Hugging Face</li><li>Caching</li>
         </ul>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ==================== ABOUT + SKILLS ==================== -->
-<section id="about" aria-label="About and skills">
+<!-- ==================== SKILLS + BACKGROUND ==================== -->
+<section id="background" aria-label="Skills, experience and education">
   <div class="wrap">
-    <p class="eyebrow" data-reveal>about</p>
-    <h2 data-reveal style="--d:.08s">First principles, then shipping.</h2>
+    <p class="eyebrow" data-reveal>background</p>
+    <h2 data-reveal style="--d:.08s">Skills, experience, education.</h2>
 
-    <div class="about-grid">
+    <div class="split">
       <div>
-        <!-- EDIT: about copy -->
-        <p data-reveal>
-          I'm an MSc AI/ML student in Berlin. Coursework is the baseline; the
-          projects are where it gets real — <b>full-stack apps I deploy on AWS
-          myself</b>, ML implemented from the maths up, and applied research into
-          what AI features actually cost to run.
-        </p>
-        <p data-reveal style="--d:.08s">
-          The through-line is spend. Most teams shipping AI features are paying
-          for calls they've already made and for infrastructure nobody tuned.
-          I'm useful at both ends: <b>standing up the cloud</b> and
-          <b>bringing the inference bill down</b>.
-        </p>
-        <p data-reveal style="--d:.16s">
-          Looking for a small, sharp European team (English-speaking) where I can
-          grow as an ML or data engineer — as an intern or working student.
-        </p>
-
-        <!-- EDIT: update as your work changes -->
-        <ul class="now" data-reveal style="--d:.24s">
-          <li><b>Extending Green Caching</b> — semantic caching and measured energy via CodeCarbon</li>
-          <li><b>Deepening ML foundations</b> — CNNs in PyTorch and transformer fine-tuning</li>
-          <li><b>Learning the agentic-AI / MCP stack</b> — finished Anthropic's MCP course, prototyping with it</li>
-        </ul>
-        <span class="now-stamp" data-reveal style="--d:.28s">updated august 2026</span>
+        <!-- EDIT: skills — only what the projects above (or past work) back up -->
+        <div class="skill-group" data-reveal>
+          <h3 class="group-h">Machine learning &amp; NLP</h3>
+          <ul class="chips">
+            <li>PyTorch</li><li>Hugging Face Transformers</li><li>Fine-tuning</li><li>Ranking metrics (Recall@k, MRR, nDCG)</li><li>NumPy</li>
+          </ul>
+        </div>
+        <div class="skill-group" data-reveal style="--d:.06s">
+          <h3 class="group-h">Retrieval &amp; LLM applications</h3>
+          <ul class="chips">
+            <li>BM25</li><li>Sentence embeddings</li><li>Hybrid search</li><li>Schema-validated LLM output</li><li>On-device Whisper</li>
+          </ul>
+        </div>
+        <div class="skill-group" data-reveal style="--d:.12s">
+          <h3 class="group-h">Data</h3>
+          <ul class="chips">
+            <li>Python</li><li>pandas</li><li>SQL / MySQL</li><li>Plotly</li><li>Streamlit</li><li>Jupyter</li>
+          </ul>
+        </div>
+        <div class="skill-group" data-reveal style="--d:.18s">
+          <h3 class="group-h">Cloud &amp; engineering</h3>
+          <ul class="chips">
+            <li>AWS (EC2, RDS, VPC, S3, IAM)</li><li>Linux</li><li>Git</li><li>Swift / SwiftUI</li>
+          </ul>
+        </div>
       </div>
 
       <div>
-        <!-- EDIT: skills -->
-        <div class="skill-group" data-reveal>
-          <h3>Machine learning</h3>
-          <ul class="chips">
-            <li>PyTorch</li><li>Deep Learning</li><li>CNNs</li><li>NLP / NLI</li><li>NumPy</li><li>Hugging Face</li>
-          </ul>
-        </div>
-        <div class="skill-group" data-reveal style="--d:.08s">
-          <h3>Cloud &amp; infrastructure</h3>
-          <ul class="chips">
-            <li>AWS</li><li>EC2</li><li>RDS</li><li>VPC / S3</li><li>IAM</li><li>Linux</li><li>Python</li><li>Git</li>
-          </ul>
-        </div>
-        <div class="skill-group" data-reveal style="--d:.16s">
-          <h3>Cost &amp; efficiency</h3>
-          <ul class="chips">
-            <li>Response Caching</li><li>Efficient Inference</li><li>Green Software Patterns</li><li>Plotly</li><li>Data Visualization</li>
-          </ul>
-        </div>
-        <div class="skill-group" data-reveal style="--d:.24s">
-          <h3>Agentic AI · learning</h3>
-          <ul class="chips">
-            <li>Claude API</li><li>MCP</li><li>MCP Course · Anthropic</li><li>FastAPI</li><li>GCP</li>
-          </ul>
-        </div>
+        <!-- EDIT: experience & education -->
+        <h3 class="group-h" data-reveal>Experience</h3>
+        <ul class="timeline" data-reveal>
+          <li>
+            <h3>Trainee Software Developer (Zoho Creator) — Texila American University Consortium</h3>
+            <span class="when">05.2024 – 01.2025 · Coimbatore, India</span>
+            <p>Built workflow applications on Zoho Creator with Deluge scripting, including a multi-stage talent-acquisition tool for an external client, and wrote its user manual.</p>
+          </li>
+        </ul>
+
+        <h3 class="group-h" data-reveal>Education</h3>
+        <ul class="timeline" data-reveal>
+          <li>
+            <h3>MSc Data Science (AI/ML focus) — University of Europe for Applied Sciences, Berlin</h3>
+            <span class="when">09.2025 – 08.2027 (expected)</span>
+          </li>
+          <li>
+            <h3>BSc Computer Technology — Kongunadu Arts and Science College, Coimbatore</h3>
+            <span class="when">2021 – 2024</span>
+          </li>
+        </ul>
+
+        <h3 class="group-h" data-reveal>Certifications &amp; languages</h3>
+        <ul class="plain" data-reveal>
+          <li>Supervised Machine Learning — DeepLearning.AI (2025)</li>
+          <li>Model Context Protocol course — Anthropic (2026)</li>
+          <li>English C1 (IELTS 7) · German A1</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -676,10 +594,10 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 <section id="contact" class="contact" aria-label="Contact">
   <div class="wrap">
     <p class="eyebrow" data-reveal>contact</p>
-    <h2 data-reveal style="--d:.08s">Tell me what your inference bill looks like.</h2>
+    <h2 data-reveal style="--d:.08s">Hiring a working student for ML or data?</h2>
     <p data-reveal style="--d:.16s">
-      Available for ML, data and cloud roles across Europe — internships and
-      working-student positions. I reply fast.
+      I can work 20 hours a week during the semester, in Berlin or remote.
+      Email is the fastest way to reach me.
     </p>
     <div class="contact-links" data-reveal style="--d:.24s">
       <a class="btn btn-primary" href="mailto:viswasvinayakumar@gmail.com">email me</a>
@@ -695,12 +613,12 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
 <footer>
   <div class="wrap foot">
     <span>© 2026 Viswas Vinayakumar</span>
-    <span>built by hand · zero dependencies · berlin</span>
+    <span>plain HTML &amp; CSS · berlin</span>
   </div>
 </footer>
 
 <script>
-/* Nav border on scroll + staggered reveals (transform/opacity only) */
+/* Nav border on scroll + reveals (transform/opacity only) */
 (function () {
   "use strict";
   var nav = document.getElementById("nav");
