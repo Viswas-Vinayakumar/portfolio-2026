@@ -246,6 +246,10 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 .timeline h3{font-family:var(--f-body);font-size:1rem;font-weight:600;letter-spacing:0;line-height:1.4}
 .timeline .when{font-family:var(--f-mono);font-size:.74rem;color:var(--faint);display:block;margin-top:.15rem}
 .timeline p{color:var(--muted);font-size:.95rem;margin-top:.4rem}
+.praise{margin-top:.9rem;padding-left:1rem;border-left:2px solid var(--text)}
+.timeline .praise p{color:var(--text);font-style:italic;margin-top:0}
+.praise footer{border:0;padding:0;font-family:var(--f-mono);font-size:.72rem;color:var(--faint);margin-top:.4rem;line-height:1.5}
+.praise a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .plain{list-style:none;display:grid;gap:.35rem;color:var(--muted);font-size:.95rem}
 
 /* ==================== CONTACT ==================== */
@@ -254,6 +258,8 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 .contact .eyebrow::after{display:none}
 .contact h2{font-size:clamp(1.9rem,4.6vw,2.8rem);max-width:20ch;margin:.9rem auto 0}
 .contact p{color:var(--muted);max-width:48ch;margin:1.2rem auto 0}
+.contact .findme{font-family:var(--f-display);font-size:clamp(1.4rem,3vw,1.8rem);font-weight:500;letter-spacing:-.02em;margin-top:2.8rem}
+.contact strong{color:var(--text)}
 .contact-links{margin-top:2.4rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
 footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mono);font-size:.74rem;color:var(--faint)}
@@ -387,12 +393,13 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
   <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
   <symbol id="i-swift" viewBox="0 0 24 24"><path d="M7.508 0c-.287 0-.573 0-.86.002-.241.002-.483.003-.724.01-.132.003-.263.009-.395.015A9.154 9.154 0 0 0 4.348.15 5.492 5.492 0 0 0 2.85.645 5.04 5.04 0 0 0 .645 2.848c-.245.48-.4.972-.495 1.5-.093.52-.122 1.05-.136 1.576a35.2 35.2 0 0 0-.012.724C0 6.935 0 7.221 0 7.508v8.984c0 .287 0 .575.002.862.002.24.005.481.012.722.014.526.043 1.057.136 1.576.095.528.25 1.02.495 1.5a5.03 5.03 0 0 0 2.205 2.203c.48.244.97.4 1.498.495.52.093 1.05.124 1.576.138.241.007.483.009.724.01.287.002.573.002.86.002h8.984c.287 0 .573 0 .86-.002.241-.001.483-.003.724-.01a10.523 10.523 0 0 0 1.578-.138 5.322 5.322 0 0 0 1.498-.495 5.035 5.035 0 0 0 2.203-2.203c.245-.48.4-.972.495-1.5.093-.52.124-1.05.138-1.576.007-.241.009-.481.01-.722.002-.287.002-.575.002-.862V7.508c0-.287 0-.573-.002-.86a33.662 33.662 0 0 0-.01-.724 10.5 10.5 0 0 0-.138-1.576 5.328 5.328 0 0 0-.495-1.5A5.039 5.039 0 0 0 21.152.645 5.32 5.32 0 0 0 19.654.15a10.493 10.493 0 0 0-1.578-.138 34.98 34.98 0 0 0-.722-.01C17.067 0 16.779 0 16.492 0H7.508zm6.035 3.41c4.114 2.47 6.545 7.162 5.549 11.131-.024.093-.05.181-.076.272l.002.001c2.062 2.538 1.5 5.258 1.236 4.745-1.072-2.086-3.066-1.568-4.088-1.043a6.803 6.803 0 0 1-.281.158l-.02.012-.002.002c-2.115 1.123-4.957 1.205-7.812-.022a12.568 12.568 0 0 1-5.64-4.838c.649.48 1.35.902 2.097 1.252 3.019 1.414 6.051 1.311 8.197-.002C9.651 12.73 7.101 9.67 5.146 7.191a10.628 10.628 0 0 1-1.005-1.384c2.34 2.142 6.038 4.83 7.365 5.576C8.69 8.408 6.208 4.743 6.324 4.86c4.436 4.47 8.528 6.996 8.528 6.996.154.085.27.154.36.213.085-.215.16-.437.224-.668.708-2.588-.09-5.548-1.893-7.992z"/></symbol>
   <symbol id="i-kotlin" viewBox="0 0 24 24"><path d="M24 24H0V0h24L12 12Z"/></symbol>
+  <symbol id="i-claudecode" viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill-rule="evenodd" d="M2 3h12v7H2zM5 5v2h1V5zM10 5v2h1V5zM1 6h1v2H1zM14 6h1v2h-1zM3 10h1v2H3zM5 10h1v2H5zM10 10h1v2h-1zM12 10h1v2h-1z"/><rect x="5" y="5" width="1" height="0"><animate attributeName="height" values="0;0;2;0" keyTimes="0;.9;.95;1" dur="4s" repeatCount="indefinite"/></rect><rect x="10" y="5" width="1" height="0"><animate attributeName="height" values="0;0;2;0" keyTimes="0;.9;.95;1" dur="4s" repeatCount="indefinite"/></rect></symbol>
   <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5h10.5a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.4 9.6 4.5 4.5 0 0 0 7 18.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
   </svg>
   <div class="marquee">
     <div class="track">
-      <ul><li><svg aria-hidden="true"><use href="#i-python"/></svg>Python</li><li><svg aria-hidden="true"><use href="#i-pytorch"/></svg>PyTorch</li><li><svg aria-hidden="true"><use href="#i-huggingface"/></svg>Hugging Face</li><li><svg aria-hidden="true"><use href="#i-numpy"/></svg>NumPy</li><li><svg aria-hidden="true"><use href="#i-pandas"/></svg>pandas</li><li><svg aria-hidden="true"><use href="#i-jupyter"/></svg>Jupyter</li><li><svg aria-hidden="true"><use href="#i-claude"/></svg>Claude</li><li><svg aria-hidden="true"><use href="#i-ollama"/></svg>Ollama</li></ul>
-      <ul aria-hidden="true"><li><svg aria-hidden="true"><use href="#i-python"/></svg>Python</li><li><svg aria-hidden="true"><use href="#i-pytorch"/></svg>PyTorch</li><li><svg aria-hidden="true"><use href="#i-huggingface"/></svg>Hugging Face</li><li><svg aria-hidden="true"><use href="#i-numpy"/></svg>NumPy</li><li><svg aria-hidden="true"><use href="#i-pandas"/></svg>pandas</li><li><svg aria-hidden="true"><use href="#i-jupyter"/></svg>Jupyter</li><li><svg aria-hidden="true"><use href="#i-claude"/></svg>Claude</li><li><svg aria-hidden="true"><use href="#i-ollama"/></svg>Ollama</li></ul>
+      <ul><li><svg aria-hidden="true"><use href="#i-python"/></svg>Python</li><li><svg aria-hidden="true"><use href="#i-pytorch"/></svg>PyTorch</li><li><svg aria-hidden="true"><use href="#i-huggingface"/></svg>Hugging Face</li><li><svg aria-hidden="true"><use href="#i-numpy"/></svg>NumPy</li><li><svg aria-hidden="true"><use href="#i-pandas"/></svg>pandas</li><li><svg aria-hidden="true"><use href="#i-jupyter"/></svg>Jupyter</li><li><svg aria-hidden="true"><use href="#i-claude"/></svg>Claude</li><li><svg aria-hidden="true"><use href="#i-claudecode"/></svg>Claude Code</li><li><svg aria-hidden="true"><use href="#i-ollama"/></svg>Ollama</li></ul>
+      <ul aria-hidden="true"><li><svg aria-hidden="true"><use href="#i-python"/></svg>Python</li><li><svg aria-hidden="true"><use href="#i-pytorch"/></svg>PyTorch</li><li><svg aria-hidden="true"><use href="#i-huggingface"/></svg>Hugging Face</li><li><svg aria-hidden="true"><use href="#i-numpy"/></svg>NumPy</li><li><svg aria-hidden="true"><use href="#i-pandas"/></svg>pandas</li><li><svg aria-hidden="true"><use href="#i-jupyter"/></svg>Jupyter</li><li><svg aria-hidden="true"><use href="#i-claude"/></svg>Claude</li><li><svg aria-hidden="true"><use href="#i-claudecode"/></svg>Claude Code</li><li><svg aria-hidden="true"><use href="#i-ollama"/></svg>Ollama</li></ul>
     </div>
   </div>
   <div class="marquee rev">
@@ -629,6 +636,10 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
             <h3>Trainee Software Developer (Zoho Creator) — Texila American University Consortium</h3>
             <span class="when">05.2024 – 01.2025 · Coimbatore, India</span>
             <p>Built workflow applications on Zoho Creator with Deluge scripting, including a multi-stage talent-acquisition tool for an external client, and wrote its user manual.</p>
+            <blockquote class="praise">
+              <p>&ldquo;Gone through the manual. Its well done. I really appreciate your efforts, understanding of concepts and swift response for our queries. You are a good team player.&rdquo;</p>
+              <footer>Poornima J, Head of Talent Acquisition, Global Dynamic Talent Solutions (the client) · email, Dec 2024 · <a href="https://www.linkedin.com/posts/viswasvinayakumar_softwaredevelopment-problemsolving-careergrowth-ugcPost-7292124046014529538-G2jU/" rel="noopener" target="_blank">her video on LinkedIn ↗</a></footer>
+            </blockquote>
           </li>
         </ul>
 
@@ -662,13 +673,15 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
     <h2 data-reveal style="--d:.08s">Hiring a working student for ML or data?</h2>
     <p data-reveal style="--d:.16s">
       I can work 20 hours a week during the semester, in Berlin or remote.
-      Email is the fastest way to reach me.
     </p>
-    <div class="contact-links" data-reveal style="--d:.24s">
+    <h3 class="findme" data-reveal style="--d:.2s">I'm easy to find.</h3>
+    <p data-reveal style="--d:.24s">
+      Search <strong>Viswas Vinayakumar</strong> and you'll find me on LinkedIn and X.
+      Or email me as <strong>viswasvinayakumar</strong> at gmail.
+    </p>
+    <div class="contact-links" data-reveal style="--d:.28s">
       <a class="btn btn-primary" href="mailto:viswasvinayakumar@gmail.com">email me</a>
-      <a class="btn btn-ghost" href="https://github.com/viswas-vinayakumar" rel="noopener" target="_blank">github</a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/viswas-vinayakumar-5659aa228" rel="noopener" target="_blank">linkedin</a>
-      <a class="btn btn-ghost" href="https://x.com/vichu_learns" rel="noopener" target="_blank">x</a>
+      <a class="btn btn-ghost" href="https://github.com/viswas-vinayakumar" rel="noopener" target="_blank">github ↗</a>
     </div>
   </div>
 </section>
