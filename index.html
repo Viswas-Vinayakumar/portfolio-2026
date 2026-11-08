@@ -106,6 +106,10 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 }
 .nav-links a:hover{color:var(--text)}
 .nav-links a:hover::after{transform:scaleX(1)}
+.nav-links{align-items:center}
+.nav-links a.nav-cta{color:#fff;background:var(--teal-deep);padding:.42rem .9rem;border-radius:99px}
+.nav-links a.nav-cta::after{display:none}
+.nav-links a.nav-cta:hover{background:#333;color:#fff}
 
 /* ==================== HERO ==================== */
 .hero{padding:9rem 0 3.5rem}
@@ -177,6 +181,20 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 }
 .facts b{color:var(--text);font-weight:500}
 
+/* collapsed detail on featured cards: summary visible, the rest on demand */
+.more{margin-top:1rem}
+.more summary{
+  list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--f-mono);font-size:.8rem;color:var(--text);font-weight:500;
+  padding:.45rem .85rem;border:1px solid var(--line);border-radius:99px;background:var(--tint);
+  transition:border-color .3s var(--ease);
+}
+.more summary::-webkit-details-marker{display:none}
+.more summary::after{content:"+";font-size:1rem;line-height:1;transition:transform .3s var(--ease)}
+.more[open] summary::after{transform:rotate(45deg)}
+.more summary:hover{border-color:var(--teal)}
+.more summary:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+
 /* the honest credit / limits line — stated, not buried
    (the second selector beats `.featured>div>p` on featured cards) */
 .credit,.featured>div>p.credit{
@@ -246,11 +264,45 @@ section{padding:clamp(4rem,8vw,6.5rem) 0;position:relative}
 .timeline h3{font-family:var(--f-body);font-size:1rem;font-weight:600;letter-spacing:0;line-height:1.4}
 .timeline .when{font-family:var(--f-mono);font-size:.74rem;color:var(--faint);display:block;margin-top:.15rem}
 .timeline p{color:var(--muted);font-size:.95rem;margin-top:.4rem}
-.praise{margin-top:.9rem;padding-left:1rem;border-left:2px solid var(--text)}
-.timeline .praise p{color:var(--text);font-style:italic;margin-top:0}
-.praise footer{border:0;padding:0;font-family:var(--f-mono);font-size:.72rem;color:var(--faint);margin-top:.4rem;line-height:1.5}
-.praise a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 .plain{list-style:none;display:grid;gap:.35rem;color:var(--muted);font-size:.95rem}
+
+/* ==================== PRAISE ==================== */
+.praise-link{display:inline-block;margin-top:.6rem;font-family:var(--f-mono);font-size:.78rem;color:var(--text);border-bottom:1px solid var(--line)}
+.praise-link:hover{border-bottom-color:var(--text)}
+.praise-sec{background:#111;color:#f5f5f5}
+.praise-sec .eyebrow{color:#a3a3a3}
+.praise-sec .eyebrow::after{background:#333}
+.praise-sec h2{color:#fff}
+.praise-intro{color:#a3a3a3;max-width:58ch;margin-top:1rem}
+.quotes{margin-top:2.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.quote{
+  position:relative;margin:0;display:flex;flex-direction:column;
+  background:#1a1a1a;border:1px solid #2a2a2a;border-radius:var(--rad);
+  padding:clamp(1.5rem,3.5vw,2.2rem);overflow:hidden;
+  transition:border-color .3s var(--ease);
+}
+.quote:hover{border-color:#555}
+.quote::before{
+  content:"\201C";position:absolute;right:1.2rem;top:-.6rem;
+  font-family:var(--f-display);font-size:7rem;line-height:1;color:#262626;pointer-events:none;
+}
+.who-tag{
+  align-self:flex-start;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:#111;background:#f5f5f5;border-radius:6px;padding:.28rem .6rem;font-weight:500;
+}
+.quote blockquote{margin:1.2rem 0 0;flex:1;position:relative}
+.quote blockquote p{
+  font-family:var(--f-display);font-size:clamp(1.12rem,2vw,1.32rem);line-height:1.45;
+  letter-spacing:-.01em;color:#fff;font-weight:500;
+}
+.quote figcaption{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid #2a2a2a;display:grid;gap:.25rem}
+.quote figcaption b{font-weight:600;color:#fff}
+.quote figcaption span{font-family:var(--f-mono);font-size:.72rem;color:#8a8a8a;line-height:1.6}
+.quote figcaption a{
+  justify-self:start;margin-top:.6rem;font-family:var(--f-mono);font-size:.78rem;color:#fff;
+  border:1px solid #3a3a3a;border-radius:99px;padding:.4rem .85rem;transition:border-color .3s var(--ease);
+}
+.quote figcaption a:hover{border-color:#f5f5f5}
 
 /* ==================== CONTACT ==================== */
 .contact{text-align:center;background:var(--tint)}
@@ -311,6 +363,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
   .featured{grid-template-columns:1fr}
   .split{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr}
 }
 @media (max-width:560px){
   body{font-size:1rem}
@@ -320,6 +373,10 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
   .status{font-size:.7rem;border-radius:12px}
   .arch{font-size:.72rem}
   .track ul{gap:2rem;padding-right:2rem}
+}
+@media (max-width:430px){
+  /* phones: keep "work" and the hire-me button; the rest is a scroll away */
+  .nav-links li:nth-child(2),.nav-links li:nth-child(3){display:none}
 }
 </style>
 </head>
@@ -336,6 +393,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
         <li><a href="#work">work</a></li>
         <li><a href="#background">background</a></li>
         <li><a href="#contact">contact</a></li>
+        <li><a class="nav-cta" data-goatcounter-click="cta-nav-hire" href="mailto:viswasvinayakumar@gmail.com?subject=Working%20student%20role%20at%20%5Byour%20company%5D">hire me</a></li>
       </ul>
     </nav>
   </div>
@@ -360,7 +418,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
     <div class="hero-cta" data-reveal style="--d:.24s">
       <a class="btn btn-primary" href="#work">See the work →</a>
       <a class="btn btn-ghost" href="https://github.com/viswas-vinayakumar" rel="noopener" target="_blank">GitHub</a>
-      <a class="btn btn-ghost" href="mailto:viswasvinayakumar@gmail.com">Email</a>
+      <a class="btn btn-ghost" data-goatcounter-click="cta-hero-email" href="mailto:viswasvinayakumar@gmail.com?subject=Working%20student%20role%20at%20%5Byour%20company%5D">Email</a>
     </div>
 
     <!-- EDIT: availability -->
@@ -432,16 +490,21 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
         </p>
         <ul class="facts">
           <li>Graded on 15 hand-labelled queries, each built to test one weakness (synonyms, exact terms, an English query, German compounds): hybrid search reached <b>Recall@5 1.00 and MRR@10 0.90</b>, keyword search alone 0.73 / 0.67</li>
-          <li>BM25 found no correct coach for 4 of 15 queries. Hybrid and semantic search came out tied (MRR 0.90 vs. 0.88, a two-query gap), and the write-up says so</li>
-          <li>Tried sentence-level chunking and kept it out of ranking: it lowered MRR from 0.88 to 0.76 on these short profiles, so it's used only to explain matches</li>
         </ul>
-        <p class="credit">
-          Limits, stated in the repo: 30 synthetic profiles, 15 queries, one
-          person's labels. A 0.07 difference in MRR is a single query.
-        </p>
-        <ul class="tags" aria-label="Technologies">
-          <li>Python</li><li>BM25</li><li>Sentence Transformers</li><li>Rank fusion (RRF)</li><li>Streamlit</li>
-        </ul>
+        <details class="more">
+          <summary>How I built and tested it</summary>
+          <ul class="facts">
+            <li>BM25 found no correct coach for 4 of 15 queries. Hybrid and semantic search came out tied (MRR 0.90 vs. 0.88, a two-query gap), and the write-up says so</li>
+            <li>Tried sentence-level chunking and kept it out of ranking: it lowered MRR from 0.88 to 0.76 on these short profiles, so it's used only to explain matches</li>
+          </ul>
+          <p class="credit">
+            Limits, stated in the repo: 30 synthetic profiles, 15 queries, one
+            person's labels. A 0.07 difference in MRR is a single query.
+          </p>
+          <ul class="tags" aria-label="Technologies">
+            <li>Python</li><li>BM25</li><li>Sentence Transformers</li><li>Rank fusion (RRF)</li><li>Streamlit</li>
+          </ul>
+        </details>
         <ul class="links">
           <li><a href="https://coach-search.streamlit.app/" rel="noopener" target="_blank">Live demo ↗</a></li>
           <li><a href="https://github.com/Viswas-Vinayakumar/AI-search" rel="noopener" target="_blank">Code &amp; evaluation ↗</a></li>
@@ -474,18 +537,23 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
         </p>
         <ul class="facts">
           <li>On-device Whisper (WhisperKit, Core ML): audio never leaves the laptop, and it's recorded in 5-minute chunks so a crash loses nothing</li>
-          <li>The LLM must return JSON that matches a schema (one retry with the error fed back). A deterministic Swift merger with no LLM in it folds each lecture into the notebook. <b>587 automated checks</b></li>
-          <li>Resumable five-step pipeline. The notes model is a setting: Claude Code, the Anthropic API, or a local OpenAI-compatible model such as Ollama</li>
-          <li>In progress: an Android companion (Kotlin, on-device Whisper) that records on the phone and syncs through Google Drive. It runs on an emulator but hasn't been tested end to end on a real phone</li>
         </ul>
-        <p class="credit">
-          Designed and directed by me; built with Claude Code as a pair
-          programmer — a written spec, a plan, test-first code and a review for
-          every feature.
-        </p>
-        <ul class="tags" aria-label="Technologies">
-          <li>Swift</li><li>SwiftUI</li><li>WhisperKit</li><li>Core ML</li><li>Claude</li><li>EventKit</li><li>Kotlin</li>
-        </ul>
+        <details class="more">
+          <summary>How I built and tested it</summary>
+          <ul class="facts">
+            <li>The LLM must return JSON that matches a schema (one retry with the error fed back). A deterministic Swift merger with no LLM in it folds each lecture into the notebook. <b>587 automated checks</b></li>
+            <li>Resumable five-step pipeline. The notes model is a setting: Claude Code, the Anthropic API, or a local OpenAI-compatible model such as Ollama</li>
+            <li>In progress: an Android companion (Kotlin, on-device Whisper) that records on the phone and syncs through Google Drive. It runs on an emulator but hasn't been tested end to end on a real phone</li>
+          </ul>
+          <p class="credit">
+            Designed and directed by me; built with Claude Code as a pair
+            programmer — a written spec, a plan, test-first code and a review for
+            every feature.
+          </p>
+          <ul class="tags" aria-label="Technologies">
+            <li>Swift</li><li>SwiftUI</li><li>WhisperKit</li><li>Core ML</li><li>Claude</li><li>EventKit</li><li>Kotlin</li>
+          </ul>
+        </details>
         <ul class="links">
           <li><a href="https://viswas-vinayakumar.github.io/smartnotes-ai-docs/" rel="noopener" target="_blank">Technical documentation ↗</a></li>
         </ul>
@@ -515,12 +583,17 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
         </p>
         <ul class="facts">
           <li>Fine-tuned RoBERTa-base on all three ANLI rounds: 3 epochs, 10.5 hours on one Apple M4 (MPS), no cloud spend</li>
-          <li>An R1-only ablation and a per-class error analysis alongside the main run</li>
-          <li>Reported the curriculum model as <b>competitive, not dominant</b>: ahead on R1 and R2, behind on the hardest round</li>
         </ul>
-        <ul class="tags" aria-label="Technologies">
-          <li>PyTorch</li><li>Hugging Face</li><li>RoBERTa</li><li>ANLI</li><li>MPS</li>
-        </ul>
+        <details class="more">
+          <summary>How I built and tested it</summary>
+          <ul class="facts">
+            <li>An R1-only ablation and a per-class error analysis alongside the main run</li>
+            <li>Reported the curriculum model as <b>competitive, not dominant</b>: ahead on R1 and R2, behind on the hardest round</li>
+          </ul>
+          <ul class="tags" aria-label="Technologies">
+            <li>PyTorch</li><li>Hugging Face</li><li>RoBERTa</li><li>ANLI</li><li>MPS</li>
+          </ul>
+        </details>
         <ul class="links">
           <li><a href="https://github.com/Viswas-Vinayakumar/roberta-base-anli-baseline" rel="noopener" target="_blank">Code, logs &amp; report ↗</a></li>
         </ul>
@@ -636,10 +709,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
             <h3>Trainee Software Developer (Zoho Creator) — Texila American University Consortium</h3>
             <span class="when">05.2024 – 01.2025 · Coimbatore, India</span>
             <p>Built workflow applications on Zoho Creator with Deluge scripting, including a multi-stage talent-acquisition tool for an external client, and wrote its user manual.</p>
-            <blockquote class="praise">
-              <p>&ldquo;Gone through the manual. Its well done. I really appreciate your efforts, understanding of concepts and swift response for our queries. You are a good team player.&rdquo;</p>
-              <footer>Poornima J, Head of Talent Acquisition, Global Dynamic Talent Solutions (the client) · email, Dec 2024 · <a href="https://www.linkedin.com/posts/viswasvinayakumar_softwaredevelopment-problemsolving-careergrowth-ugcPost-7292124046014529538-G2jU/" rel="noopener" target="_blank">her video on LinkedIn ↗</a></footer>
-            </blockquote>
+            <a class="praise-link" href="#praise">What my manager and the client said ↓</a>
           </li>
         </ul>
 
@@ -666,6 +736,39 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
   </div>
 </section>
 
+<!-- ==================== PRAISE ==================== -->
+<section id="praise" class="praise-sec" aria-label="What people I worked with say">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>in their words</p>
+    <h2 data-reveal style="--d:.08s">From my last job, on my last day.</h2>
+    <p class="praise-intro" data-reveal style="--d:.12s">Texila, Coimbatore, 2024–25. I built a talent-acquisition tool for an external client. Here's what my manager and that client said.</p>
+    <div class="quotes">
+      <figure class="quote" data-reveal style="--d:.16s">
+        <span class="who-tag">my manager</span>
+        <blockquote>
+          <p>&ldquo;It was a good mindset he came in, very open to learn, very open to challenges. So we challenged him like anything&hellip; He learned quickly&hellip; One thing that I really appreciate is openness to learn.&rdquo;</p>
+        </blockquote>
+        <figcaption>
+          <b>Sathyanarayanan CN</b>
+          <span>Manager, Texila · farewell video, Jan 2025 (spoken, transcribed)</span>
+          <a href="https://www.linkedin.com/posts/viswasvinayakumar_gratitude-newbeginnings-growthjourney-ugcPost-7291648412205072384-P6MK/" rel="noopener" target="_blank" data-goatcounter-click="praise-video-manager">▶ Watch the video</a>
+        </figcaption>
+      </figure>
+      <figure class="quote" data-reveal style="--d:.22s">
+        <span class="who-tag">the client</span>
+        <blockquote>
+          <p>&ldquo;Gone through the manual. Its well done. I really appreciate your efforts, understanding of concepts and swift response for our queries. You are a good team player.&rdquo;</p>
+        </blockquote>
+        <figcaption>
+          <b>Poornima J</b>
+          <span>Head of Talent Acquisition, Global Dynamic Talent Solutions · email, Dec 2024</span>
+          <a href="https://www.linkedin.com/posts/viswasvinayakumar_softwaredevelopment-problemsolving-careergrowth-ugcPost-7292124046014529538-G2jU/" rel="noopener" target="_blank" data-goatcounter-click="praise-video-client">▶ Watch her video</a>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== CONTACT ==================== -->
 <section id="contact" class="contact" aria-label="Contact">
   <div class="wrap">
@@ -680,8 +783,8 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
       Or email me as <strong>viswasvinayakumar</strong> at gmail.
     </p>
     <div class="contact-links" data-reveal style="--d:.28s">
-      <a class="btn btn-primary" href="mailto:viswasvinayakumar@gmail.com">email me</a>
-      <a class="btn btn-ghost" href="https://github.com/viswas-vinayakumar" rel="noopener" target="_blank">github ↗</a>
+      <a class="btn btn-primary" data-goatcounter-click="cta-contact-email" href="mailto:viswasvinayakumar@gmail.com?subject=Working%20student%20role%20at%20%5Byour%20company%5D">email me</a>
+      <a class="btn btn-ghost" data-goatcounter-click="cta-contact-github" href="https://github.com/viswas-vinayakumar" rel="noopener" target="_blank">github ↗</a>
     </div>
   </div>
 </section>
@@ -718,5 +821,9 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;font-family:var(--f-mon
   items.forEach(function (el) { io.observe(el); });
 })();
 </script>
+<!-- Analytics: GoatCounter (cookie-free, no consent banner needed).
+     Enable after creating the "viswas" site at goatcounter.com: uncomment the line below.
+<script data-goatcounter="https://viswas.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+-->
 </body>
 </html>
